@@ -8,19 +8,34 @@ const acceptance = /^(?:好(?:啊|呀|的)?|可以(?:啊)?|行(?:啊)?|走(?:吧
 const preparation = /我(?:们)?(?:现在|这就|马上)?(?:要|准备|打算)?(?:去)?吃(?:饭|午饭|晚饭|早饭|早餐|午餐|晚餐|点东西|零食)|(?:准备|打算|马上|这就)(?:现在|马上)?(?:去)?(?:吃|用餐|食堂|餐厅|饭店)|我(?:们)?(?:先)?去(?:食堂|餐厅|饭店)|开饭了/;
 
 // Whole-utterance commands only: quotes, negation and future plans cannot match.
-export function isPhoneCameraCommand(text) {
-  const compact = text.replace(/[\s，,。.!！?？、：:]/gu, '').toLowerCase();
-  // SenseVoice produced "happy记录." in the real Habi pronunciation test.
-  // Keep that raw evidence; accept this alias only as a complete command.
-  return /^(?:habi|哈比|happy)记录$/u.test(compact);
+//
+// SenseVoice mis-spells the wake word and the command in many ways on real recordings. The lists
+// below are the observed spellings from this project plus the predictable neutral-tone homophones,
+// and they are matched only as a complete utterance so "他说…" or "明天…" can never fire a camera.
+const wakeAliases = ['habi', 'happy', '哈比', '哈皮', '哈哔', '哈必', '哈b', 'h皮', '他比', '海比', '还彼', '阿皮'];
+const phoneCommandWords = ['记录', '纪录', '记路', '基录', '记陆', '之录', '之路'];
+const boardCommandWords = ['看看', '看一眼', '看一下', '看下', '瞧瞧', '瞅瞅', '堪堪', '坎坎', '砍砍', '卡看', '看刊',
+  '拍一张', '拍个照', '拍照', '拍下'];
+
+function compactUtterance(text) {
+  return text.replace(/[\s，,。.!！?？、：:；;、·~～]/gu, '').toLowerCase();
 }
 
-// "哈比看看" asks the paired wearable camera for one frame. It is a different command from
-// "哈比记录" on purpose: the phone answers its own camera immediately, while the board is a
-// polled device, so this one opens a bounded capture window instead of taking a photo inline.
+function isWholeUtterance(text, commandWords) {
+  const compact = compactUtterance(text);
+  const wake = wakeAliases.join('|');
+  const commands = commandWords.join('|');
+  return new RegExp(`^(?:${wake})(?:${commands})$`, 'u').test(compact);
+}
+
+/** 哈比记录 → the phone answers its own camera immediately. */
+export function isPhoneCameraCommand(text) {
+  return isWholeUtterance(text, phoneCommandWords);
+}
+
+/** 哈比看看 → ask the paired wearable camera for one frame. Same utterance, different device. */
 export function isBoardCameraCommand(text) {
-  const compact = text.replace(/[\s，,。.!！?？、：:]/gu, '').toLowerCase();
-  return /^(?:habi|哈比|happy)看看$/u.test(compact);
+  return isWholeUtterance(text, boardCommandWords);
 }
 
 /** Context is an acquisition hint, never a claim that food was consumed. */

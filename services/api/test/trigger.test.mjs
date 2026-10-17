@@ -355,3 +355,34 @@ test('哈比记录 still asks the phone camera instead of the board', async t =>
   assert.equal(response.json().signal.action, 'phone_capture');
   assert.equal((await config(app)).capture_window, null);
 });
+
+test('ASR homophones of the wake word and both camera commands are accepted', async t => {
+  const { app } = await setup(t);
+  await post(app, '/api/device/pause', { paused: false });
+  const boardVariants = ['哈比看看', 'happy看看', 'habi看看', '哈皮看看', 'h皮看看', '他比看看', '海比看看',
+    '哈比看下', '哈比看一下', '哈比看一眼', '哈比瞧瞧', '哈比瞅瞅', '哈比拍照', '哈比拍一张', '哈比坎坎', '哈比卡看'];
+  for (const [index, text] of boardVariants.entries()) {
+    const response = await post(app, '/api/signals/context', input({ signalId: `alias-board-${index}`, text }));
+    const plan = response.json().signal;
+    assert.equal(plan.action, 'capture_window', text);
+    assert.equal(plan.reason, 'explicit_board_command', text);
+  }
+  const phoneVariants = ['哈比记录', 'happy记录', '哈皮记录', '他比纪录', '哈比记路', '哈比之录', '哈比基录', 'habi记录'];
+  for (const [index, text] of phoneVariants.entries()) {
+    const response = await post(app, '/api/signals/context', input({ signalId: `alias-phone-${index}`, text }));
+    assert.equal(response.json().signal.action, 'phone_capture', text);
+  }
+});
+
+test('near-miss phrases never become a camera command', async t => {
+  const { app } = await setup(t);
+  await post(app, '/api/device/pause', { paused: false });
+  const nearMisses = ['他说哈比看看', '明天哈比看看', '哈比不要看看', '哈比看看这个', '我们看看', '看看',
+    '哈比记录了', '哈比记录一下', '哈比记录吗'];
+  for (const [index, text] of nearMisses.entries()) {
+    const response = await post(app, '/api/signals/context', input({ signalId: `near-miss-${index}`, text }));
+    const plan = response.json().signal;
+    assert.notEqual(plan.action, 'capture_window', text);
+    assert.notEqual(plan.action, 'phone_capture', text);
+  }
+});
