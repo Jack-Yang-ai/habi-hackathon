@@ -1,0 +1,12 @@
+{
+  "name": "@de-companion/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@fastify/multipart": "^9.0.3",
+    "@fastify/static": "10.1.6",
+    "fastify": "^5.6.0",
+    "zod": "^4.1.0"
+  }
+}

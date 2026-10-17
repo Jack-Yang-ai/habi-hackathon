@@ -1,0 +1,11 @@
+{
+  "admin": false,
+  "supabase": false,
+  "payment": false,
+  "appAuth": false,
+  "adminAuth": false,
+  "includes": {
+    "plugins": [],
+    "connectors": []
+  }
+}

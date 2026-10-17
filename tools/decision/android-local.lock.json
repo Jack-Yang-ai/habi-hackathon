@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "ndk": "28.2.13676358",
+  "cmake": "3.31.1",
+  "android_api": 26,
+  "abi": "arm64-v8a",
+  "arm_arch": "armv8-a",
+  "cpu_threads": 2,
+  "llama_cpp_python_source": {
+    "version": "0.3.36",
+    "url": "https://files.pythonhosted.org/packages/ec/e9/e7de2b0463ea3ffbf0ede6cb21b58c1258a8f6521aae45ca773a59fe7cf3/llama_cpp_python-0.3.36.tar.gz",
+    "bytes": 76589250,
+    "sha256": "832db0699007f1be95a7e41ef12e88926b02ba836461e36a36372db2760c1a2e"
+  },
+  "vad_source": {
+    "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/Vad.kt",
+    "bytes": 4112,
+    "sha256": "dc3fe3b63cea2becd4780a9cc8ef2aaee552eed9533d4c0f178db1172a53662c"
+  },
+  "sherpa_runtime_lock": "audio/android-runtime.lock.json",
+  "audio_models_lock": "audio/models.lock.json",
+  "decider_model_lock": "tools/decision/decider-model.lock.json",
+  "readout": {
+    "layout": "plain-state-first",
+    "add_bos": false,
+    "option_shuffle": false,
+    "temperature": 1.03,
+    "n_ctx": 2048,
+    "n_seq_max": 1,
+    "gpu_layers": 0,
+    "letter_logits": "A..G at final Answer: ( token"
+  }
+}

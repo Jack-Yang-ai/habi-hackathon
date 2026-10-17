@@ -1,0 +1,230 @@
+/* =============================================================================
+ * 设计 token（唯一色值来源）
+ *
+ * 小伴的配色：**米白打底、苔绿当魂、木色做框**。
+ * 一句话 + 三条依据：
+ *   · 底色用米白（纸感中性），不用纯白——纯白在手机上偏冷、偏"仪表盘"，
+ *     而这个产品要的是"有温度的小屋"；
+ *   · 主色取苔绿（moss）而不是健身类常见的荧光绿：苔藓是慢慢长、不张扬的绿，
+ *     和"不催促、不羞辱"的产品立场的语感一致；
+ *   · 木色（wood）只用于边框、置物与场景（窗框、窗台、陶杯、木桌），
+ *     让界面像一间木屋里摆着的东西，而不是一屏卡片墙；
+ *   · 其余全是这两色的明度阶 + 一点点腮红（小伴的脸）与天色（窗外）。
+ *
+ * 约束（见 references/05-styling.md）：
+ * 1. 字面量色值只允许出现在本文件，其它任何文件都必须使用 token 或 Tailwind 语义类。
+ * 2. token 用「空格分隔的 RGB 通道」书写，便于 Tailwind 用 rgb(var(--x) / <alpha-value>) 支持透明度。
+ * 3. 新增颜色 = 在 :root 加一个原始色阶 + 一个语义映射，缺一不可。
+ * 4. 语义 token 必须成对提供前景与背景（如 --primary / --primary-foreground）。
+ * 5. 前景/背景的配对要满足 4.5:1 对比度（可读性红线，门禁 G44 会逐对计算）。
+ * 6. 本工程只有一套配色：不得写死色值，也不得加 `dark:` 变体。
+ * ========================================================================== */
+
+:root {
+  /* ---------- 原始色阶（raw palette） ---------- */
+
+  /* 米白 / 纸感中性色：整个界面的底 */
+  --paper-0: 255 253 250;
+  --paper-50: 250 247 241;
+  --paper-100: 244 240 232;
+  --paper-200: 237 231 221;
+  --paper-300: 226 218 205;
+  --paper-400: 213 203 188;
+  --paper-500: 190 180 163;
+  --paper-600: 158 148 132;
+
+  /* 墨绿灰：所有文字 */
+  --ink-900: 33 36 30;
+  --ink-700: 68 71 61;
+  --ink-500: 96 92 84;
+  --ink-400: 124 119 109;
+
+  /* 苔绿 moss：品牌主色。600 是主色本体，700/800 用于状态与深底 */
+  --moss-100: 227 234 218;
+  --moss-200: 205 218 190;
+  --moss-300: 175 196 154;
+  --moss-400: 143 172 116;
+  --moss-500: 110 141 86;
+  --moss-600: 70 102 60;
+  --moss-700: 55 82 47;
+  --moss-800: 42 63 36;
+
+  /* 木色 wood：边框、置物、场景里的木件 */
+  --wood-100: 240 228 213;
+  --wood-200: 227 207 181;
+  --wood-300: 205 175 141;
+  --wood-400: 172 132 91;
+  --wood-500: 138 100 64;
+  --wood-600: 113 80 50;
+  --wood-700: 88 61 37;
+
+  /* 点缀：小伴的腮红与窗外的天色 */
+  --blush-200: 233 189 172;
+  --blush-300: 219 160 141;
+  --sky-100: 231 240 244;
+  --sky-200: 206 222 231;
+  --sky-300: 178 202 216;
+
+  /* 状态（明色主题下要当文字色用，所以取深档） */
+  --amber-700: 138 90 24;
+  --clay-600: 158 62 48;
+
+  /* 场景与演示插画专用的素色（餐盘、米饭、菜、蛋黄、木桌） */
+  --plate-100: 248 245 239;
+  --plate-200: 238 233 224;
+  --plate-300: 219 211 197;
+  --rice-0: 253 251 246;
+  --rice-100: 230 226 216;
+  --rice-200: 240 236 227;
+  --greens-400: 128 158 100;
+  --greens-500: 96 126 74;
+  --yolk-400: 226 168 62;
+  --yolk-300: 240 190 96;
+
+  /* ---------- 语义 token ---------- */
+  --background: var(--paper-50);
+  --foreground: var(--ink-900);
+
+  --surface: var(--paper-0);
+  --surface-foreground: var(--ink-900);
+  --surface-muted: var(--paper-100);
+
+  --muted: var(--paper-200);
+  /* 次要文字：必须能在 background / surface / muted 三种底上都达到 4.5:1（门禁 G44 会算） */
+  --muted-foreground: var(--ink-500);
+
+  --primary: var(--moss-600);
+  --primary-foreground: var(--paper-0);
+  --primary-soft: var(--moss-100);
+
+  --secondary: var(--paper-200);
+  --secondary-foreground: var(--ink-900);
+
+  --accent: var(--paper-200);
+  --accent-foreground: var(--ink-900);
+
+  --success: var(--moss-700);
+  --success-foreground: var(--paper-0);
+  --warning: var(--amber-700);
+  --warning-foreground: var(--paper-0);
+  --danger: var(--clay-600);
+  --danger-foreground: var(--paper-0);
+
+  --border: var(--paper-300);
+  --input: var(--paper-400);
+  --ring: var(--moss-600);
+  --overlay: 33 36 30;
+
+  /* ---------- 小伴本体（CSS/SVG 绘制的角色） ---------- */
+  --companion-body: var(--moss-200);
+  --companion-body-light: var(--moss-100);
+  --companion-body-deep: var(--moss-400);
+  --companion-belly: var(--paper-0);
+  --companion-leaf: var(--moss-500);
+  --companion-leaf-light: var(--moss-400);
+  --companion-face: var(--ink-900);
+  --companion-eye-glint: var(--paper-0);
+  --companion-blush: var(--blush-200);
+  --companion-shadow: var(--moss-800);
+  --companion-photo: var(--paper-0);
+  --companion-photo-edge: var(--wood-300);
+  --companion-photo-ink: var(--moss-500);
+  --companion-pot: var(--wood-400);
+  --companion-pot-shade: var(--wood-600);
+  --companion-glow: var(--moss-600);
+
+  /* ---------- 小屋场景 ---------- */
+  --scene-wall: var(--paper-100);
+  --scene-wall-shade: var(--wood-100);
+  --scene-wood: var(--wood-400);
+  --scene-wood-light: var(--wood-200);
+  --scene-sky: var(--sky-300);
+  --scene-sky-fade: var(--sky-200);
+  --scene-sky-deep: var(--sky-300);
+  --scene-light: var(--paper-0);
+  --scene-foliage: var(--moss-400);
+  --scene-foliage-far: var(--moss-300);
+  --scene-pot: var(--wood-500);
+  --scene-pot-shade: var(--wood-600);
+  --scene-plant: var(--moss-400);
+  --scene-plant-deep: var(--moss-500);
+  --scene-cup: var(--blush-300);
+  --scene-cup-rim: var(--blush-200);
+
+  /* ---------- 演示插画（一餐俯拍） ---------- */
+  --scene-table: var(--wood-100);
+  --scene-table-grain: var(--wood-200);
+  --scene-plate: var(--plate-200);
+  --scene-plate-light: var(--plate-100);
+  --scene-plate-edge: var(--plate-300);
+  --scene-rice: var(--rice-0);
+  --scene-rice-shade: var(--rice-100);
+  --scene-rice-grain: var(--rice-100);
+  --scene-greens: var(--greens-400);
+  --scene-greens-deep: var(--greens-500);
+  --scene-egg-white: var(--rice-0);
+  --scene-yolk: var(--yolk-400);
+  --scene-yolk-light: var(--yolk-300);
+  --scene-chopstick: var(--wood-400);
+  --scene-chopstick-light: var(--wood-300);
+
+  /* ---------- 设备背屏 ---------- */
+  --screen-surface: var(--moss-800);
+  --screen-foreground: var(--paper-50);
+
+  /* ---------- 形状 ---------- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* 发丝线：真机（iOS / 安卓）都是 2x/3x 屏，0.5px 刚好落在 1 物理像素上，比 1px 更细、更接近原生分隔线。
+   * 用法：App UI 的分隔线用 `border-hairline`（tailwind.config.js 已挂好）；
+   * 控件描边（按钮 / 输入框）仍用 1px（`border`），否则会糊成看不见。 */
+  --hairline: 0.5px;
+
+  --shadow-sm: 0 1px 2px 0 rgb(60 52 38 / 0.06);
+  --shadow-md: 0 4px 12px -2px rgb(60 52 38 / 0.1);
+  --shadow-lg: 0 12px 32px -8px rgb(60 52 38 / 0.18);
+
+  /* ---------- 字体与排版 ---------- */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', 'PingFang SC',
+    'Noto Sans CJK SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  /* 移动端 H5 字级（12 / 14 / 16 / 20）：取自主流移动端字阶，比照 iOS 的 pt 值整体收 2pt。
+   * 注意：不要直接把 iOS 的 pt（body 17 / headline 17 / title2 22）当 px 用——H5 的 px 视觉上更大，
+   * 照搬会整体偏大 2pt（设计走查反馈）。正文与辅助保持 14 / 12（已是可读性下限附近，不再下调），
+   * 要收紧的是标题档：导航 / 卡片 / 弹层标题 16，全屏最多一处的大标题 / 大数字 20。
+   * 口径见 ui-design-skill 的 references/02-app-ui-mobile-h5.md §1「字级校准」。 */
+  --text-caption: 12px;
+  --leading-caption: 16px;
+  --text-body: 14px;
+  --leading-body: 22px;
+  --text-title: 16px;
+  --leading-title: 22px;
+  --text-display: 20px;
+  --leading-display: 28px;
+
+  /* ---------- 布局尺寸（App UI） ---------- */
+  --navbar-height: 44px;
+  --tabbar-height: 56px;
+  --tap-min: 44px;
+
+  /* ---------- 动效 ---------- */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---------- 安全区 ----------
+   * --safe-top / --safe-bottom / --safe-left / --safe-right 由入口启动时调
+   * initSafeArea() 写入（真机读壳值、浏览器 / 平台预览用模拟值，见
+   * src/shared/native/safe-area.ts）。这里的 var() 链是 **首帧 / 兜底**：
+   * 壳在每次页面加载完成后还会写 --sat / --sab / --sal / --sar（px），
+   * 在拿到壳值前回落到它们，再退到 env()。 */
+  --safe-top: var(--sat, env(safe-area-inset-top, 0px));
+  --safe-bottom: var(--sab, env(safe-area-inset-bottom, 0px));
+  --safe-left: var(--sal, env(safe-area-inset-left, 0px));
+  --safe-right: var(--sar, env(safe-area-inset-right, 0px));
+}

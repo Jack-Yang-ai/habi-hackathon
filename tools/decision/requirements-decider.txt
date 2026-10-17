@@ -1,0 +1,8 @@
+# GGUF readout uses llama.cpp; torch is required by the pinned upstream API.
+torch==2.8.0
+transformers==5.19.0
+llama-cpp-python==0.3.36
+numpy==2.5.4
+huggingface-hub==2.2.0
+safetensors==0.8.0
+Jinja2==3.1.6

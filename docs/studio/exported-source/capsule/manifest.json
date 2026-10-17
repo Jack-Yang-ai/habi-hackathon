@@ -1,0 +1,11 @@
+{
+  "applicationId": "ai_p_fe2def065fda0280",
+  "name": "小伴",
+  "version": "0.1.0",
+  "versionCode": 1,
+  "entry": "web/index.html",
+  "description": "随身相机替你记下每一餐，小伴在小屋里等你回来。",
+  "orientation": "portrait",
+  "fullscreen": false,
+  "permissions": []
+}

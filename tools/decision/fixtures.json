@@ -1,0 +1,219 @@
+{
+  "fixtureOnly": true,
+  "description": "Authored development probes, not an independently sampled accuracy benchmark.",
+  "chineseQuestion": "根据完整上下文，用户本人当前的用餐准备状态是什么？计划和邀请不是实际摄入，背景媒体不是本人行动。",
+  "chineseOptions": {
+    "start_soon": "用户本人明确表示现在或马上准备吃东西，适合短时拍摄确认。",
+    "invited": "有人邀请吃东西，但尚未明确用户本人接受或开始。",
+    "eating_now": "上下文明确表示用户本人当前正在吃东西。",
+    "finished": "谈论已经吃完或过去的进食，当前不应开始拍摄。",
+    "declined": "用户明确拒绝、取消或停止吃东西。",
+    "unrelated": "只是在谈论食物、别人、未来安排、媒体或其他事情。",
+    "uncertain": "证据不足，无法确定用户本人现在是否准备吃东西。"
+  },
+  "fixtures": [
+    {
+      "id": "self_immediate_plan",
+      "state": {
+        "transcript": "我要去吃饭了",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "start_soon"
+    },
+    {
+      "id": "invitation",
+      "state": {
+        "transcript": "你要不要吃？",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "invited"
+    },
+    {
+      "id": "accepts_invitation",
+      "state": {
+        "transcript": "好啊，走吧",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [
+          "你要不要一起吃午饭？"
+        ],
+        "audio_events": []
+      },
+      "expected": "start_soon"
+    },
+    {
+      "id": "self_current_eating",
+      "state": {
+        "transcript": "我正在吃午饭",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "eating_now"
+    },
+    {
+      "id": "future_plan",
+      "state": {
+        "transcript": "明天我们去吃火锅吧",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "already_finished",
+      "state": {
+        "transcript": "我刚吃完饭",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "finished"
+    },
+    {
+      "id": "unknown_speaker",
+      "state": {
+        "transcript": "我要去吃饭了",
+        "speaker": "unknown",
+        "source": "unknown",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "uncertain"
+    },
+    {
+      "id": "background_media",
+      "state": {
+        "transcript": "主播说我要去吃饭了",
+        "speaker": "unknown",
+        "source": "media",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "declines",
+      "state": {
+        "transcript": "我不想吃了",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "declined"
+    },
+    {
+      "id": "weather",
+      "state": {
+        "transcript": "今天天气不错",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "other_person",
+      "state": {
+        "transcript": "我要去吃饭了",
+        "speaker": "other",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "taking_medicine",
+      "state": {
+        "transcript": "我正在吃药",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "quoted_example",
+      "state": {
+        "transcript": "比如我要去吃饭了这句话",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "opening_hours",
+      "state": {
+        "transcript": "开放时间早上9点至下午5点。",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "asr_opening_meal_homophone",
+      "state": {
+        "transcript": "开饭时间早上9点至下午5点。",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "meal_ready",
+      "state": {
+        "transcript": "开饭了",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "start_soon"
+    },
+    {
+      "id": "third_party_plan",
+      "state": {
+        "transcript": "他马上去吃午饭",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [],
+        "audio_events": []
+      },
+      "expected": "unrelated"
+    },
+    {
+      "id": "cancels_after_invitation",
+      "state": {
+        "transcript": "我不去了，暂时不吃了",
+        "speaker": "self",
+        "source": "user-conversation",
+        "recent_utterances": [
+          "要不要一起吃饭？",
+          "好啊"
+        ],
+        "audio_events": []
+      },
+      "expected": "declined"
+    }
+  ]
+}

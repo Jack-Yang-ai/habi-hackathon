@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "https://github.com/Mapika/decider.git",
+    "commit": "d6fc522aed7fc392576a9b66a330409bc6c382bd"
+  },
+  "model": {
+    "repository": "seongukjeong/decider-0.8b-GGUF",
+    "revision": "48c1a1dfb87edda1fff62c037cf3cf559f6dbafd",
+    "filename": "decider-0.8b-Q4_K_M.gguf",
+    "upstream_base_model": "Mapika/decider-0.8b",
+    "upstream_base_revision": "a0a01d6f8135298f400a8c856b355793012ae971",
+    "conversion": "third-party Q4_K_M GGUF",
+    "files": {
+      "decider-0.8b-Q4_K_M.gguf": {
+        "bytes": 529297504,
+        "sha256": "5cb5d042a236add5cde5459f8e8b8f8f80161ad4a1779a49377b70a64eb7b11a",
+        "url": "https://huggingface.co/seongukjeong/decider-0.8b-GGUF/resolve/48c1a1dfb87edda1fff62c037cf3cf559f6dbafd/decider-0.8b-Q4_K_M.gguf"
+      },
+      "decider_config.json": {
+        "bytes": 341,
+        "sha256": "a817fa20524b2c062753f59fd5fae02207f1eff4808b729db6e0aa8d1bc3cce2",
+        "url": "https://huggingface.co/seongukjeong/decider-0.8b-GGUF/resolve/48c1a1dfb87edda1fff62c037cf3cf559f6dbafd/decider_config.json"
+      },
+      "tokenizer.json": {
+        "bytes": 19989325,
+        "sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+        "url": "https://huggingface.co/seongukjeong/decider-0.8b-GGUF/resolve/48c1a1dfb87edda1fff62c037cf3cf559f6dbafd/tokenizer.json"
+      },
+      "tokenizer_config.json": {
+        "bytes": 1128,
+        "sha256": "8671bed7c852ce9e661be94f179a7b4ffd091c2a65aea0363e5501c20318ee45",
+        "url": "https://huggingface.co/seongukjeong/decider-0.8b-GGUF/resolve/48c1a1dfb87edda1fff62c037cf3cf559f6dbafd/tokenizer_config.json"
+      },
+      "LICENSE": {
+        "bytes": 10745,
+        "sha256": "8489ebe7c8abe903fcdaace4080ef1660bba98ea44c8007923bfb91777945e37",
+        "url": "https://huggingface.co/seongukjeong/decider-0.8b-GGUF/resolve/48c1a1dfb87edda1fff62c037cf3cf559f6dbafd/LICENSE"
+      },
+      "README.md": {
+        "bytes": 2684,
+        "sha256": "5ce675e58188d1fe48a0b6cf16660569dac6aa91f03e2d412cc6d321582761b9",
+        "url": "https://huggingface.co/seongukjeong/decider-0.8b-GGUF/resolve/48c1a1dfb87edda1fff62c037cf3cf559f6dbafd/README.md"
+      }
+    }
+  },
+  "runtime": {
+    "python": "3.12",
+    "llama_cpp_python": "0.3.36",
+    "n_ctx": 2048,
+    "cpu_threads_default": 2,
+    "n_seq_max": 1
+  }
+}

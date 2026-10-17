@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-15",
+  "assets": [
+    {
+      "name": "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2",
+      "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2",
+      "bytes": 163002883,
+      "sha256": "7d1efa2138a65b0b488df37f8b89e3d91a60676e416f515b952358d83dfd347e",
+      "sha256_origin": "github_release_digest",
+      "id": "sensevoice_int8",
+      "directory": "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17",
+      "files": {
+        "README.md": {
+          "bytes": 104,
+          "sha256": "763991a00edaea534ab36bf1b7cf89e61e911666dcfabbba71f91f9f7c593a63"
+        },
+        "test_wavs/ko.wav": {
+          "bytes": 147500,
+          "sha256": "0dc797a5c81ed30fc339d91f3da718ab02854e17ffa37cb93c4c039ac5c6bb9c"
+        },
+        "test_wavs/zh.wav": {
+          "bytes": 178988,
+          "sha256": "b77f1794fe374a0ba1ee1dc458bfaf9349496cbbfc32780c50ba3c5a7ad8e373"
+        },
+        "test_wavs/ja.wav": {
+          "bytes": 230444,
+          "sha256": "460bd8dccb0d2a5f4e29c628f837be4082d13defc64c3fc21dd1b6bb0e119095"
+        },
+        "test_wavs/en.wav": {
+          "bytes": 228908,
+          "sha256": "eb1eb008904465b74c304aad8342e8c7d3c6e61ffe9f66adcaca9cf0f76a93f4"
+        },
+        "test_wavs/yue.wav": {
+          "bytes": 164780,
+          "sha256": "0960b2db54ae202071d250e6462fbf74a3c863f0e3e7f01273e4939c996875a0"
+        },
+        "tokens.txt": {
+          "bytes": 315894,
+          "sha256": "f449eb28dc567533d7fa59be34e2abca8784f771850c78a47fb731a31429a1dc"
+        },
+        "model.int8.onnx": {
+          "bytes": 239233841,
+          "sha256": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51"
+        },
+        "LICENSE": {
+          "bytes": 71,
+          "sha256": "221c6df10b0931a5629adad671ea48fb7747e034c414b6d2bfa275bc3dd4ea17"
+        }
+      }
+    },
+    {
+      "name": "sherpa-onnx-zipformer-small-audio-tagging-2024-04-15.tar.bz2",
+      "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/audio-tagging-models/sherpa-onnx-zipformer-small-audio-tagging-2024-04-15.tar.bz2",
+      "bytes": 111034072,
+      "sha256": "07e2fafcdcbc461f2816188d9b0bbafced12584030cf67d5652e549ef256a2c6",
+      "sha256_origin": "observed_on_first_download",
+      "id": "zipformer_audio_tagging_int8",
+      "directory": "sherpa-onnx-zipformer-small-audio-tagging-2024-04-15",
+      "files": {
+        "test_wavs/1.wav": {
+          "bytes": 320078,
+          "sha256": "ce16b2d9b657a68795d48aff8bba7ded5bb12f75ad30ed18e45e2d72e1c8f58c"
+        },
+        "test_wavs/9.wav": {
+          "bytes": 295054,
+          "sha256": "3e64664ba3af83a323b2f77749d2dcb9c1d9dbf0353fbe233fc025fb8e0c2145"
+        },
+        "test_wavs/3.wav": {
+          "bytes": 320078,
+          "sha256": "1ba3e55c71a822030c91533f703b44163eaa6daea253e9f1ab790b7ac0f2f153"
+        },
+        "test_wavs/6.wav": {
+          "bytes": 279056,
+          "sha256": "136702e1046ab39bd3ad0431a789325ca14459448388248fb75cb8c033ccb4ac"
+        },
+        "test_wavs/13.wav": {
+          "bytes": 290202,
+          "sha256": "a300cfdcc92cb35701a21fe89619a1a9d2d0ebc8bf168c03733f4cc365454612"
+        },
+        "test_wavs/2.wav": {
+          "bytes": 320078,
+          "sha256": "2466dcfe841ae2ac3763ac4e4c834a523b3111cdb3e667943af1ded57ced2021"
+        },
+        "test_wavs/11.wav": {
+          "bytes": 367494,
+          "sha256": "1de5ce1e5262140b0b800cc12bf635ccb5d0d54881385f4184cb6ab873676197"
+        },
+        "test_wavs/5.wav": {
+          "bytes": 265134,
+          "sha256": "836b2d550ada991c4efb84f14c880f8e49057e1fdd35b6e05732041aff8ccbc5"
+        },
+        "test_wavs/7.wav": {
+          "bytes": 90258,
+          "sha256": "d5d38fe922c4b70d24dfc4a400b1aafc10e44034cbfca4f9110fff195323c667"
+        },
+        "test_wavs/12.wav": {
+          "bytes": 287228,
+          "sha256": "a33d53dea1624b7411b4d88d9e3d5a4a632b6a6deb522ac3049643043545ee6b"
+        },
+        "test_wavs/4.wav": {
+          "bytes": 320078,
+          "sha256": "eba3340c61d0dfb0532bed52a9da7389912addc661707bbe588dbeb4a1d38c65"
+        },
+        "test_wavs/10.wav": {
+          "bytes": 250820,
+          "sha256": "a9c4665e36e990ff739beb1b7a96df403e2f031e96004626057c342eec986965"
+        },
+        "test_wavs/8.wav": {
+          "bytes": 247104,
+          "sha256": "6a1c8069cc932d29918be549d2bbe783dca4e6b4c2443bd23f6e526cb1f483e0"
+        },
+        "class_labels_indices.csv": {
+          "bytes": 14675,
+          "sha256": "cdd1049833c4b86127c2773ac0d14a2754b6a6d0d1798002ed5c66e699708429"
+        },
+        "README.md": {
+          "bytes": 243,
+          "sha256": "a00e3521a62cf6d6fc6fc9b0ce1779cf637ffab77b017e7cf48851cb187909a6"
+        },
+        "model.int8.onnx": {
+          "bytes": 27038066,
+          "sha256": "69304b8a1b96bbe6b7d16c24079f0732c65faf3568a14cb82a8238c709afe76c"
+        }
+      }
+    }
+  ],
+  "single_files": [
+    {
+      "id": "silero_vad",
+      "name": "silero_vad.onnx",
+      "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx",
+      "bytes": 643854,
+      "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+      "sha256_origin": "github_release_digest"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# CPU-only reproducible development runtime. Models are downloaded separately.
+sherpa-onnx==1.12.30
+sherpa-onnx-core==1.12.30
+numpy==2.2.6
+soundfile==0.13.1

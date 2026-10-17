@@ -1,0 +1,41 @@
+{
+  "name": "p-fe2def065fda0280",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "node scripts/ensure-deps.mjs && vite",
+    "build": "node scripts/build.mjs",
+    "build:client": "node scripts/build.mjs --client",
+    "build:admin": "node scripts/build.mjs --admin",
+    "preview": "node scripts/ensure-deps.mjs && vite preview",
+    "typecheck": "node scripts/ensure-deps.mjs && tsc --noEmit",
+    "deps": "node scripts/ensure-deps.mjs",
+    "signing:debug": "node scripts/gen-debug-signing.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.577.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4",
+    "tailwind-merge": "^2.6.1",
+    "xgplayer": "3.0.26"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.28",
+    "stepai-vite-config": "https://ai-tos-external.tos-cn-shanghai.volces.com/ai-builder-assets/vite-preview-dev-plugin/stepai-vite-config-0.1.0.tgz",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~5.9.3",
+    "vite": "^6.4.3"
+  }
+}

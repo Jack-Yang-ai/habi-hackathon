@@ -1,0 +1,1675 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-10-15T08:44:21.266418+00:00",
+  "scope": "public_audio_and_synthetic_non_food_negative_fixtures_only",
+  "microphone_started": false,
+  "private_audio_read": false,
+  "real_eating_accuracy_measured": false,
+  "all_day_power_or_stability_measured": false,
+  "phone_runtime": "sherpa-onnx-1.13.8 / ONNX Runtime 1.28.2",
+  "host_runtime": "sherpa-onnx-1.12.30",
+  "records": {
+    "sensevoice-public.json": {
+      "schema_version": 1,
+      "results": [
+        {
+          "schema_version": 1,
+          "mode": "sensevoice",
+          "model": "sensevoice_int8",
+          "model_sha256": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.12.30",
+          "provider": "cpu",
+          "threads": 2,
+          "model_load_seconds": 1.0045764590031467,
+          "audio_path": ".tools/audio-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17/test_wavs/zh.wav",
+          "audio_sha256": "b77f1794fe374a0ba1ee1dc458bfaf9349496cbbfc32780c50ba3c5a7ad8e373",
+          "audio_duration_sec": 5.592,
+          "processed_duration_limit_sec": 3600,
+          "truncated": false,
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "host": {
+            "system": "Darwin",
+            "machine": "arm64",
+            "python": "3.12.13"
+          },
+          "windows": [
+            {
+              "text": "开放时间早上9点至下午5点。",
+              "raw_result": {
+                "lang": "<|zh|>",
+                "emotion": "<|NEUTRAL|>",
+                "event": "<|Speech|>",
+                "text": "开放时间早上9点至下午5点。",
+                "timestamps": [
+                  0.72,
+                  0.96,
+                  1.26,
+                  1.44,
+                  1.92,
+                  2.1,
+                  2.58,
+                  2.82,
+                  3.3,
+                  3.9,
+                  4.2,
+                  4.56,
+                  4.74,
+                  5.46
+                ],
+                "durations": [],
+                "tokens": [
+                  "开",
+                  "放",
+                  "时",
+                  "间",
+                  "早",
+                  "上",
+                  "9",
+                  "点",
+                  "至",
+                  "下",
+                  "午",
+                  "5",
+                  "点",
+                  "。"
+                ],
+                "ys_log_probs": [],
+                "words": []
+              },
+              "language_tag": "<|zh|>",
+              "emotion_tag": "<|NEUTRAL|>",
+              "event_tag": "<|Speech|>",
+              "speaker": "unknown",
+              "subject": "unknown",
+              "token_timestamps_sec": [
+                0.72,
+                0.96,
+                1.26,
+                1.44,
+                1.92,
+                2.1,
+                2.58,
+                2.82,
+                3.3,
+                3.9,
+                4.2,
+                4.56,
+                4.74,
+                5.46
+              ],
+              "inference_seconds": 0.12550241698045284,
+              "window_start_sec": 0.0,
+              "window_end_sec": 5.592,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.13557162502547726,
+                0.1293224170221947,
+                0.12550241698045284
+              ],
+              "real_time_factor": 0.023271128935868197
+            }
+          ],
+          "process_peak_rss_bytes": 793952256,
+          "memory_scope": "whole_process_peak_including_runtime_and_model",
+          "privacy": {
+            "microphone_started": false,
+            "network_used_during_inference": false,
+            "camera_started": false,
+            "meal_created": false
+          }
+        },
+        {
+          "schema_version": 1,
+          "mode": "sensevoice",
+          "model": "sensevoice_int8",
+          "model_sha256": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.12.30",
+          "provider": "cpu",
+          "threads": 2,
+          "model_load_seconds": 1.0045764590031467,
+          "audio_path": ".tools/audio-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17/test_wavs/en.wav",
+          "audio_sha256": "eb1eb008904465b74c304aad8342e8c7d3c6e61ffe9f66adcaca9cf0f76a93f4",
+          "audio_duration_sec": 7.152,
+          "processed_duration_limit_sec": 3600,
+          "truncated": false,
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "host": {
+            "system": "Darwin",
+            "machine": "arm64",
+            "python": "3.12.13"
+          },
+          "windows": [
+            {
+              "text": "The tribal chieftain called for the boy and presented him with 50 pieces of code.",
+              "raw_result": {
+                "lang": "<|en|>",
+                "emotion": "<|NEUTRAL|>",
+                "event": "<|Speech|>",
+                "text": "The tribal chieftain called for the boy and presented him with 50 pieces of code.",
+                "timestamps": [
+                  0.9,
+                  1.26,
+                  1.56,
+                  1.8,
+                  2.16,
+                  2.46,
+                  2.76,
+                  2.94,
+                  3.12,
+                  3.6,
+                  3.96,
+                  4.5,
+                  4.74,
+                  4.92,
+                  5.1,
+                  5.28,
+                  5.46,
+                  5.88,
+                  6.18,
+                  7.02
+                ],
+                "durations": [],
+                "tokens": [
+                  "The",
+                  " tri",
+                  "bal",
+                  " chief",
+                  "tain",
+                  " called",
+                  " for",
+                  " the",
+                  " boy",
+                  " and",
+                  " presented",
+                  " him",
+                  " with",
+                  " ",
+                  "5",
+                  "0",
+                  " pieces",
+                  " of",
+                  " code",
+                  "."
+                ],
+                "ys_log_probs": [],
+                "words": []
+              },
+              "language_tag": "<|en|>",
+              "emotion_tag": "<|NEUTRAL|>",
+              "event_tag": "<|Speech|>",
+              "speaker": "unknown",
+              "subject": "unknown",
+              "token_timestamps_sec": [
+                0.9,
+                1.26,
+                1.56,
+                1.8,
+                2.16,
+                2.46,
+                2.76,
+                2.94,
+                3.12,
+                3.6,
+                3.96,
+                4.5,
+                4.74,
+                4.92,
+                5.1,
+                5.28,
+                5.46,
+                5.88,
+                6.18,
+                7.02
+              ],
+              "inference_seconds": 0.13423133397009224,
+              "window_start_sec": 0.0,
+              "window_end_sec": 7.152,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.13309616694459692,
+                0.13226454198593274,
+                0.13423133397009224
+              ],
+              "real_time_factor": 0.018623790217217648
+            }
+          ],
+          "process_peak_rss_bytes": 797868032,
+          "memory_scope": "whole_process_peak_including_runtime_and_model",
+          "privacy": {
+            "microphone_started": false,
+            "network_used_during_inference": false,
+            "camera_started": false,
+            "meal_created": false
+          }
+        }
+      ]
+    },
+    "tagging-public.json": {
+      "schema_version": 1,
+      "results": [
+        {
+          "schema_version": 1,
+          "mode": "tagging",
+          "model": "zipformer_audio_tagging_int8",
+          "model_sha256": "69304b8a1b96bbe6b7d16c24079f0732c65faf3568a14cb82a8238c709afe76c",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.12.30",
+          "provider": "cpu",
+          "threads": 2,
+          "model_load_seconds": 0.46436737501062453,
+          "audio_path": ".tools/audio-models/sherpa-onnx-zipformer-small-audio-tagging-2024-04-15/test_wavs/3.wav",
+          "audio_sha256": "1ba3e55c71a822030c91533f703b44163eaa6daea253e9f1ab790b7ac0f2f153",
+          "audio_duration_sec": 10.0,
+          "processed_duration_limit_sec": 3600,
+          "truncated": false,
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "host": {
+            "system": "Darwin",
+            "machine": "arm64",
+            "python": "3.12.13"
+          },
+          "windows": [
+            {
+              "top_events": [
+                {
+                  "label": "Music",
+                  "index": 137,
+                  "score": 0.7911356687545776,
+                  "mid": "/m/04rlf"
+                },
+                {
+                  "label": "A capella",
+                  "index": 255,
+                  "score": 0.7785178422927856,
+                  "mid": "/m/0z9c"
+                },
+                {
+                  "label": "Vocal music",
+                  "index": 254,
+                  "score": 0.4733239412307739,
+                  "mid": "/m/0y4f8"
+                },
+                {
+                  "label": "Singing",
+                  "index": 27,
+                  "score": 0.4714867174625397,
+                  "mid": "/m/015lz1"
+                },
+                {
+                  "label": "Choir",
+                  "index": 28,
+                  "score": 0.45836493372917175,
+                  "mid": "/m/0l14jd"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 3.0100345611572266e-06,
+                "Biting": 3.3080577850341797e-06,
+                "Speech": 0.011292815208435059,
+                "Music": 0.7911356687545776
+              },
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.08801058301469311,
+              "window_start_sec": 0.0,
+              "window_end_sec": 10.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.12215933296829462,
+                0.11197654198622331,
+                0.08801058301469311
+              ],
+              "real_time_factor": 0.010738215265640368,
+              "gate": {
+                "state": "unknown",
+                "reason": "music_confound",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            }
+          ],
+          "process_peak_rss_bytes": 262979584,
+          "memory_scope": "whole_process_peak_including_runtime_and_model",
+          "privacy": {
+            "microphone_started": false,
+            "network_used_during_inference": false,
+            "camera_started": false,
+            "meal_created": false
+          }
+        },
+        {
+          "schema_version": 1,
+          "mode": "tagging",
+          "model": "zipformer_audio_tagging_int8",
+          "model_sha256": "69304b8a1b96bbe6b7d16c24079f0732c65faf3568a14cb82a8238c709afe76c",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.12.30",
+          "provider": "cpu",
+          "threads": 2,
+          "model_load_seconds": 0.46436737501062453,
+          "audio_path": ".tools/audio-models/sherpa-onnx-zipformer-small-audio-tagging-2024-04-15/test_wavs/1.wav",
+          "audio_sha256": "ce16b2d9b657a68795d48aff8bba7ded5bb12f75ad30ed18e45e2d72e1c8f58c",
+          "audio_duration_sec": 10.0,
+          "processed_duration_limit_sec": 3600,
+          "truncated": false,
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "host": {
+            "system": "Darwin",
+            "machine": "arm64",
+            "python": "3.12.13"
+          },
+          "windows": [
+            {
+              "top_events": [
+                {
+                  "label": "Animal",
+                  "index": 72,
+                  "score": 0.946651041507721,
+                  "mid": "/m/0jbk"
+                },
+                {
+                  "label": "Cat",
+                  "index": 81,
+                  "score": 0.9405267238616943,
+                  "mid": "/m/01yrx"
+                },
+                {
+                  "label": "Domestic animals, pets",
+                  "index": 73,
+                  "score": 0.9317624568939209,
+                  "mid": "/m/068hy"
+                },
+                {
+                  "label": "Caterwaul",
+                  "index": 85,
+                  "score": 0.185918927192688,
+                  "mid": "/m/07r81j2"
+                },
+                {
+                  "label": "Meow",
+                  "index": 83,
+                  "score": 0.1802968978881836,
+                  "mid": "/m/07qrkrw"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 1.817941665649414e-05,
+                "Biting": 4.342198371887207e-05,
+                "Speech": 0.00858721137046814,
+                "Music": 0.0025975406169891357
+              },
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.12452625000150874,
+              "window_start_sec": 0.0,
+              "window_end_sec": 10.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.10085412504849955,
+                0.0990458750165999,
+                0.12452625000150874
+              ],
+              "real_time_factor": 0.010814208335553606,
+              "gate": {
+                "state": "unknown",
+                "reason": "insufficient_acoustic_evidence",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            }
+          ],
+          "process_peak_rss_bytes": 263454720,
+          "memory_scope": "whole_process_peak_including_runtime_and_model",
+          "privacy": {
+            "microphone_started": false,
+            "network_used_during_inference": false,
+            "camera_started": false,
+            "meal_created": false
+          }
+        },
+        {
+          "schema_version": 1,
+          "mode": "tagging",
+          "model": "zipformer_audio_tagging_int8",
+          "model_sha256": "69304b8a1b96bbe6b7d16c24079f0732c65faf3568a14cb82a8238c709afe76c",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.12.30",
+          "provider": "cpu",
+          "threads": 2,
+          "model_load_seconds": 0.46436737501062453,
+          "audio_path": ".tools/audio-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17/test_wavs/zh.wav",
+          "audio_sha256": "b77f1794fe374a0ba1ee1dc458bfaf9349496cbbfc32780c50ba3c5a7ad8e373",
+          "audio_duration_sec": 5.592,
+          "processed_duration_limit_sec": 3600,
+          "truncated": false,
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "host": {
+            "system": "Darwin",
+            "machine": "arm64",
+            "python": "3.12.13"
+          },
+          "windows": [
+            {
+              "top_events": [
+                {
+                  "label": "Speech",
+                  "index": 0,
+                  "score": 0.9758982062339783,
+                  "mid": "/m/09x0r"
+                },
+                {
+                  "label": "Narration, monologue",
+                  "index": 5,
+                  "score": 0.032096654176712036,
+                  "mid": "/m/02qldy"
+                },
+                {
+                  "label": "Speech synthesizer",
+                  "index": 7,
+                  "score": 0.019515156745910645,
+                  "mid": "/m/0brhx"
+                },
+                {
+                  "label": "Male speech, man speaking",
+                  "index": 1,
+                  "score": 0.007659822702407837,
+                  "mid": "/m/05zppz"
+                },
+                {
+                  "label": "Inside, small room",
+                  "index": 506,
+                  "score": 0.005201578140258789,
+                  "mid": "/t/dd00125"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 1.2516975402832031e-06,
+                "Biting": 3.814697265625e-06,
+                "Speech": 0.9758982062339783,
+                "Music": 0.000508725643157959
+              },
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.057177291018888354,
+              "window_start_sec": 0.0,
+              "window_end_sec": 5.592,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.06895020802039653,
+                0.06692508299602196,
+                0.057177291018888354
+              ],
+              "real_time_factor": 0.011507664642066455,
+              "gate": {
+                "state": "unknown",
+                "reason": "invalid_window_duration",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            }
+          ],
+          "process_peak_rss_bytes": 263454720,
+          "memory_scope": "whole_process_peak_including_runtime_and_model",
+          "privacy": {
+            "microphone_started": false,
+            "network_used_during_inference": false,
+            "camera_started": false,
+            "meal_created": false
+          }
+        }
+      ]
+    },
+    "sensevoice-silence.json": {
+      "schema_version": 1,
+      "results": [
+        {
+          "schema_version": 1,
+          "mode": "sensevoice",
+          "model": "sensevoice_int8",
+          "model_sha256": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.12.30",
+          "provider": "cpu",
+          "threads": 2,
+          "model_load_seconds": 1.089596249978058,
+          "audio_path": ".tools/audio-validation/fixtures/silence.wav",
+          "audio_sha256": "40abc924dc63f75aafb2400bb99fd66741e22eb9ff2450973a18db53a06286ac",
+          "audio_duration_sec": 30.0,
+          "processed_duration_limit_sec": 3600,
+          "truncated": false,
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "host": {
+            "system": "Darwin",
+            "machine": "arm64",
+            "python": "3.12.13"
+          },
+          "windows": [
+            {
+              "text": "我.",
+              "raw_result": {
+                "lang": "<|en|>",
+                "emotion": "<|EMO_UNKNOWN|>",
+                "event": "<|BGM|>",
+                "text": "我.",
+                "timestamps": [
+                  0.36,
+                  29.82
+                ],
+                "durations": [],
+                "tokens": [
+                  "我",
+                  "."
+                ],
+                "ys_log_probs": [],
+                "words": []
+              },
+              "language_tag": "<|en|>",
+              "emotion_tag": "<|EMO_UNKNOWN|>",
+              "event_tag": "<|BGM|>",
+              "speaker": "unknown",
+              "subject": "unknown",
+              "token_timestamps_sec": [
+                0.36,
+                29.82
+              ],
+              "inference_seconds": 0.7679890000144951,
+              "window_start_sec": 0.0,
+              "window_end_sec": 30.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.7679890000144951
+              ],
+              "real_time_factor": 0.025599633333816502
+            }
+          ],
+          "process_peak_rss_bytes": 916324352,
+          "memory_scope": "whole_process_peak_including_runtime_and_model",
+          "privacy": {
+            "microphone_started": false,
+            "network_used_during_inference": false,
+            "camera_started": false,
+            "meal_created": false
+          }
+        }
+      ]
+    },
+    "tagging-synthetic-negatives.json": {
+      "schema_version": 1,
+      "results": [
+        {
+          "schema_version": 1,
+          "mode": "tagging",
+          "model": "zipformer_audio_tagging_int8",
+          "model_sha256": "69304b8a1b96bbe6b7d16c24079f0732c65faf3568a14cb82a8238c709afe76c",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.12.30",
+          "provider": "cpu",
+          "threads": 2,
+          "model_load_seconds": 0.3095673330244608,
+          "audio_path": ".tools/audio-validation/fixtures/silence.wav",
+          "audio_sha256": "40abc924dc63f75aafb2400bb99fd66741e22eb9ff2450973a18db53a06286ac",
+          "audio_duration_sec": 30.0,
+          "processed_duration_limit_sec": 3600,
+          "truncated": false,
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "host": {
+            "system": "Darwin",
+            "machine": "arm64",
+            "python": "3.12.13"
+          },
+          "windows": [
+            {
+              "top_events": [
+                {
+                  "label": "Music",
+                  "index": 137,
+                  "score": 0.3656463623046875,
+                  "mid": "/m/04rlf"
+                },
+                {
+                  "label": "Silence",
+                  "index": 500,
+                  "score": 0.2736166715621948,
+                  "mid": "/m/028v0c"
+                },
+                {
+                  "label": "Speech",
+                  "index": 0,
+                  "score": 0.06553146243095398,
+                  "mid": "/m/09x0r"
+                },
+                {
+                  "label": "Vehicle",
+                  "index": 300,
+                  "score": 0.012148410081863403,
+                  "mid": "/m/07yv9"
+                },
+                {
+                  "label": "Inside, small room",
+                  "index": 506,
+                  "score": 0.009820878505706787,
+                  "mid": "/t/dd00125"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 1.5676021575927734e-05,
+                "Biting": 7.510185241699219e-06,
+                "Speech": 0.06553146243095398,
+                "Music": 0.3656463623046875
+              },
+              "audio_rms": 0.0,
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.09358058398356661,
+              "window_start_sec": 0.0,
+              "window_end_sec": 10.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.09358058398356661
+              ],
+              "real_time_factor": 0.00935805839835666,
+              "gate": {
+                "state": "unknown",
+                "reason": "near_silence",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            },
+            {
+              "top_events": [
+                {
+                  "label": "Music",
+                  "index": 137,
+                  "score": 0.3656463623046875,
+                  "mid": "/m/04rlf"
+                },
+                {
+                  "label": "Silence",
+                  "index": 500,
+                  "score": 0.2736166715621948,
+                  "mid": "/m/028v0c"
+                },
+                {
+                  "label": "Speech",
+                  "index": 0,
+                  "score": 0.06553146243095398,
+                  "mid": "/m/09x0r"
+                },
+                {
+                  "label": "Vehicle",
+                  "index": 300,
+                  "score": 0.012148410081863403,
+                  "mid": "/m/07yv9"
+                },
+                {
+                  "label": "Inside, small room",
+                  "index": 506,
+                  "score": 0.009820878505706787,
+                  "mid": "/t/dd00125"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 1.5676021575927734e-05,
+                "Biting": 7.510185241699219e-06,
+                "Speech": 0.06553146243095398,
+                "Music": 0.3656463623046875
+              },
+              "audio_rms": 0.0,
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.08648083300795406,
+              "window_start_sec": 10.0,
+              "window_end_sec": 20.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.08648083300795406
+              ],
+              "real_time_factor": 0.008648083300795407,
+              "gate": {
+                "state": "unknown",
+                "reason": "near_silence",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            },
+            {
+              "top_events": [
+                {
+                  "label": "Music",
+                  "index": 137,
+                  "score": 0.3656463623046875,
+                  "mid": "/m/04rlf"
+                },
+                {
+                  "label": "Silence",
+                  "index": 500,
+                  "score": 0.2736166715621948,
+                  "mid": "/m/028v0c"
+                },
+                {
+                  "label": "Speech",
+                  "index": 0,
+                  "score": 0.06553146243095398,
+                  "mid": "/m/09x0r"
+                },
+                {
+                  "label": "Vehicle",
+                  "index": 300,
+                  "score": 0.012148410081863403,
+                  "mid": "/m/07yv9"
+                },
+                {
+                  "label": "Inside, small room",
+                  "index": 506,
+                  "score": 0.009820878505706787,
+                  "mid": "/t/dd00125"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 1.5676021575927734e-05,
+                "Biting": 7.510185241699219e-06,
+                "Speech": 0.06553146243095398,
+                "Music": 0.3656463623046875
+              },
+              "audio_rms": 0.0,
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.08432845800416544,
+              "window_start_sec": 20.0,
+              "window_end_sec": 30.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.08432845800416544
+              ],
+              "real_time_factor": 0.008432845800416543,
+              "gate": {
+                "state": "unknown",
+                "reason": "near_silence",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            }
+          ],
+          "process_peak_rss_bytes": 297631744,
+          "memory_scope": "whole_process_peak_including_runtime_and_model",
+          "privacy": {
+            "microphone_started": false,
+            "network_used_during_inference": false,
+            "camera_started": false,
+            "meal_created": false
+          }
+        },
+        {
+          "schema_version": 1,
+          "mode": "tagging",
+          "model": "zipformer_audio_tagging_int8",
+          "model_sha256": "69304b8a1b96bbe6b7d16c24079f0732c65faf3568a14cb82a8238c709afe76c",
+          "runtime": "sherpa-onnx",
+          "runtime_version": "1.12.30",
+          "provider": "cpu",
+          "threads": 2,
+          "model_load_seconds": 0.3095673330244608,
+          "audio_path": ".tools/audio-validation/fixtures/quiet_440hz_tone.wav",
+          "audio_sha256": "6a9e3a8e337130e42bf42f953179a5190ae82620906463428f8cd97526cdf18f",
+          "audio_duration_sec": 30.0,
+          "processed_duration_limit_sec": 3600,
+          "truncated": false,
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "host": {
+            "system": "Darwin",
+            "machine": "arm64",
+            "python": "3.12.13"
+          },
+          "windows": [
+            {
+              "top_events": [
+                {
+                  "label": "Sine wave",
+                  "index": 501,
+                  "score": 0.9764608144760132,
+                  "mid": "/m/01v_m0"
+                },
+                {
+                  "label": "Beep, bleep",
+                  "index": 481,
+                  "score": 0.07157400250434875,
+                  "mid": "/m/02fs_r"
+                },
+                {
+                  "label": "Chirp tone",
+                  "index": 503,
+                  "score": 0.060723066329956055,
+                  "mid": "/m/0hdsk"
+                },
+                {
+                  "label": "Dial tone",
+                  "index": 393,
+                  "score": 0.0317423939704895,
+                  "mid": "/m/015jpf"
+                },
+                {
+                  "label": "Sound effect",
+                  "index": 504,
+                  "score": 0.019343912601470947,
+                  "mid": "/m/0c1dj"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 6.16908073425293e-06,
+                "Biting": 2.0563602447509766e-06,
+                "Speech": 0.0017219483852386475,
+                "Music": 0.008888393640518188
+              },
+              "audio_rms": 0.021212590858340263,
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.07930983300320804,
+              "window_start_sec": 0.0,
+              "window_end_sec": 10.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.07930983300320804
+              ],
+              "real_time_factor": 0.007930983300320804,
+              "gate": {
+                "state": "unknown",
+                "reason": "insufficient_acoustic_evidence",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            },
+            {
+              "top_events": [
+                {
+                  "label": "Sine wave",
+                  "index": 501,
+                  "score": 0.9764608144760132,
+                  "mid": "/m/01v_m0"
+                },
+                {
+                  "label": "Beep, bleep",
+                  "index": 481,
+                  "score": 0.07157400250434875,
+                  "mid": "/m/02fs_r"
+                },
+                {
+                  "label": "Chirp tone",
+                  "index": 503,
+                  "score": 0.060723066329956055,
+                  "mid": "/m/0hdsk"
+                },
+                {
+                  "label": "Dial tone",
+                  "index": 393,
+                  "score": 0.0317423939704895,
+                  "mid": "/m/015jpf"
+                },
+                {
+                  "label": "Sound effect",
+                  "index": 504,
+                  "score": 0.019343912601470947,
+                  "mid": "/m/0c1dj"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 6.16908073425293e-06,
+                "Biting": 2.0563602447509766e-06,
+                "Speech": 0.0017219483852386475,
+                "Music": 0.008888393640518188
+              },
+              "audio_rms": 0.021212590858340263,
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.08408891700673848,
+              "window_start_sec": 10.0,
+              "window_end_sec": 20.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.08408891700673848
+              ],
+              "real_time_factor": 0.008408891700673849,
+              "gate": {
+                "state": "unknown",
+                "reason": "insufficient_acoustic_evidence",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            },
+            {
+              "top_events": [
+                {
+                  "label": "Sine wave",
+                  "index": 501,
+                  "score": 0.9764608144760132,
+                  "mid": "/m/01v_m0"
+                },
+                {
+                  "label": "Beep, bleep",
+                  "index": 481,
+                  "score": 0.07157400250434875,
+                  "mid": "/m/02fs_r"
+                },
+                {
+                  "label": "Chirp tone",
+                  "index": 503,
+                  "score": 0.060723066329956055,
+                  "mid": "/m/0hdsk"
+                },
+                {
+                  "label": "Dial tone",
+                  "index": 393,
+                  "score": 0.0317423939704895,
+                  "mid": "/m/015jpf"
+                },
+                {
+                  "label": "Sound effect",
+                  "index": 504,
+                  "score": 0.019343912601470947,
+                  "mid": "/m/0c1dj"
+                }
+              ],
+              "relevant_scores": {
+                "Chewing, mastication": 6.16908073425293e-06,
+                "Biting": 2.0563602447509766e-06,
+                "Speech": 0.0017219483852386475,
+                "Music": 0.008888393640518188
+              },
+              "audio_rms": 0.021212590858340263,
+              "scores_are_calibrated": false,
+              "speaker": "unknown",
+              "subject": "unknown",
+              "inference_seconds": 0.08062016702024266,
+              "window_start_sec": 20.0,
+              "window_end_sec": 30.0,
+              "source_context": "unknown",
+              "inference_runs_seconds": [
+                0.08062016702024266
+              ],
+              "real_time_factor": 0.008062016702024267,
+              "gate": {
+                "state": "unknown",
+                "reason": "insufficient_acoustic_evidence",
+                "action_recommendation": "defer",
+                "speaker": "unknown",
+                "subject": "unknown",
+                "requires_confirmation": true,
+                "meal_confirmed": false,
+                "calories": null,
+                "camera_started": false,
+                "reminder_sent": false
+              }
+            }
+          ],
+          "process_peak_rss_bytes": 298106880,
+          "memory_scope": "whole_process_peak_including_runtime_and_model",
+          "privacy": {
+            "microphone_started": false,
+            "network_used_during_inference": false,
+            "camera_started": false,
+            "meal_created": false
+          }
+        }
+      ]
+    },
+    "speech-vad-public.json": {
+      "schema_version": 1,
+      "results": [
+        {
+          "schema_version": 1,
+          "audio_path": ".tools/audio-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17/test_wavs/zh.wav",
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "identity_verified": false,
+          "speech_vad": {
+            "model": "silero_vad",
+            "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+            "threshold": 0.5
+          },
+          "microphone_started": false,
+          "camera_started": false,
+          "meal_created": false,
+          "segments": [
+            {
+              "text": "开放时间早上9点至下午5点。",
+              "raw_result": {
+                "lang": "<|zh|>",
+                "emotion": "<|NEUTRAL|>",
+                "event": "<|Speech|>",
+                "text": "开放时间早上9点至下午5点。",
+                "timestamps": [
+                  0.3,
+                  0.54,
+                  0.78,
+                  1.02,
+                  1.44,
+                  1.62,
+                  2.1,
+                  2.4,
+                  2.82,
+                  3.42,
+                  3.78,
+                  4.08,
+                  4.32,
+                  5.04
+                ],
+                "durations": [],
+                "tokens": [
+                  "开",
+                  "放",
+                  "时",
+                  "间",
+                  "早",
+                  "上",
+                  "9",
+                  "点",
+                  "至",
+                  "下",
+                  "午",
+                  "5",
+                  "点",
+                  "。"
+                ],
+                "ys_log_probs": [],
+                "words": []
+              },
+              "language_tag": "<|zh|>",
+              "emotion_tag": "<|NEUTRAL|>",
+              "event_tag": "<|Speech|>",
+              "speaker": "unknown",
+              "subject": "unknown",
+              "token_timestamps_sec": [
+                0.742,
+                0.982,
+                1.222,
+                1.462,
+                1.882,
+                2.062,
+                2.542,
+                2.842,
+                3.262,
+                3.862,
+                4.222,
+                4.522,
+                4.762,
+                5.482
+              ],
+              "inference_seconds": 0.09476649999851361,
+              "window_start_sec": 0.442,
+              "window_end_sec": 5.592,
+              "raw_vad_start_sec": 0.742,
+              "raw_vad_end_sec": 5.126,
+              "speech_context_padding_sec": {
+                "before": 0.3,
+                "after": 0.5
+              },
+              "audio_rms": 0.1376975029706955,
+              "speech_vad_verified": true,
+              "source_context": "unknown",
+              "identity_verified": false,
+              "eligible_for_semantic_analysis": true,
+              "meal_confirmed": false
+            }
+          ],
+          "truncated": false,
+          "processed_duration_sec": 5.592,
+          "elapsed_seconds_including_model_load": 0.7547604580176994,
+          "process_peak_rss_bytes": 838385664
+        },
+        {
+          "schema_version": 1,
+          "audio_path": ".tools/audio-validation/fixtures/silence.wav",
+          "source_context": "unknown",
+          "speaker": "unknown",
+          "subject": "unknown",
+          "identity_verified": false,
+          "speech_vad": {
+            "model": "silero_vad",
+            "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+            "threshold": 0.5
+          },
+          "microphone_started": false,
+          "camera_started": false,
+          "meal_created": false,
+          "segments": [],
+          "truncated": false,
+          "processed_duration_sec": 30.0,
+          "elapsed_seconds_including_model_load": 0.09452520799823105,
+          "process_peak_rss_bytes": 838762496
+        }
+      ]
+    },
+    "android-public.json": {
+      "schema_version": 1,
+      "device_model": "PZ261A",
+      "android_sdk": "36",
+      "remote_directory": "/data/local/tmp/echo-audio-public-9da2f330c66f",
+      "public_fixture_sha256_verified": true,
+      "bundle_sha256": "1e5498cb6fa3489e9aa942561f901d376a8040bab783a2fdb5e2220ceae6e0df",
+      "microphone_started": false,
+      "private_audio_read": false,
+      "results": [
+        {
+          "schema_version": 1,
+          "mode": "sensevoice",
+          "runtime": "sherpa-onnx-1.13.8-android-arm64",
+          "provider": "cpu",
+          "threads": 2,
+          "fixture": "zh.wav",
+          "audio_duration_sec": 5.592,
+          "speaker": "unknown",
+          "subject": "unknown",
+          "microphone_started": false,
+          "camera_started": false,
+          "network_used": false,
+          "meal_created": false,
+          "model_load_seconds": 1.187275572,
+          "memory_before_release": {
+            "VmHWM": "733492 kB",
+            "VmRSS": "731700 kB"
+          },
+          "runs": [
+            {
+              "inference_seconds": 0.25338625,
+              "real_time_factor": 0.045312276466380544,
+              "text": "开饭时间早上9点至下午5点。",
+              "language_tag": "<|zh|>",
+              "emotion_tag": "<|NEUTRAL|>",
+              "event_tag": "<|Speech|>",
+              "tokens": [
+                "开",
+                "饭",
+                "时",
+                "间",
+                "早",
+                "上",
+                "9",
+                "点",
+                "至",
+                "下",
+                "午",
+                "5",
+                "点",
+                "。"
+              ],
+              "token_timestamps_sec": [
+                0.71999997,
+                0.96,
+                1.26,
+                1.5,
+                1.92,
+                2.1,
+                2.58,
+                2.8799999,
+                3.3,
+                3.8999999,
+                4.2599998,
+                4.62,
+                4.7999997,
+                5.52
+              ]
+            },
+            {
+              "inference_seconds": 0.12100625,
+              "real_time_factor": 0.021639172031473534,
+              "text": "开饭时间早上9点至下午5点。",
+              "language_tag": "<|zh|>",
+              "emotion_tag": "<|NEUTRAL|>",
+              "event_tag": "<|Speech|>",
+              "tokens": [
+                "开",
+                "饭",
+                "时",
+                "间",
+                "早",
+                "上",
+                "9",
+                "点",
+                "至",
+                "下",
+                "午",
+                "5",
+                "点",
+                "。"
+              ],
+              "token_timestamps_sec": [
+                0.71999997,
+                0.96,
+                1.26,
+                1.5,
+                1.92,
+                2.1,
+                2.58,
+                2.8799999,
+                3.3,
+                3.8999999,
+                4.2599998,
+                4.62,
+                4.7999997,
+                5.52
+              ]
+            },
+            {
+              "inference_seconds": 0.120712187,
+              "real_time_factor": 0.021586585658082975,
+              "text": "开饭时间早上9点至下午5点。",
+              "language_tag": "<|zh|>",
+              "emotion_tag": "<|NEUTRAL|>",
+              "event_tag": "<|Speech|>",
+              "tokens": [
+                "开",
+                "饭",
+                "时",
+                "间",
+                "早",
+                "上",
+                "9",
+                "点",
+                "至",
+                "下",
+                "午",
+                "5",
+                "点",
+                "。"
+              ],
+              "token_timestamps_sec": [
+                0.71999997,
+                0.96,
+                1.26,
+                1.5,
+                1.92,
+                2.1,
+                2.58,
+                2.8799999,
+                3.3,
+                3.8999999,
+                4.2599998,
+                4.62,
+                4.7999997,
+                5.52
+              ]
+            }
+          ],
+          "memory_scope": "standalone_process_including_ART_and_native_runtime"
+        },
+        {
+          "schema_version": 1,
+          "mode": "tagging",
+          "runtime": "sherpa-onnx-1.13.8-android-arm64",
+          "provider": "cpu",
+          "threads": 2,
+          "fixture": "music.wav",
+          "audio_duration_sec": 10,
+          "speaker": "unknown",
+          "subject": "unknown",
+          "microphone_started": false,
+          "camera_started": false,
+          "network_used": false,
+          "meal_created": false,
+          "model_load_seconds": 0.540496459,
+          "memory_before_release": {
+            "VmHWM": "390440 kB",
+            "VmRSS": "390440 kB"
+          },
+          "runs": [
+            {
+              "inference_seconds": 0.22477875,
+              "real_time_factor": 0.022477875,
+              "top_events": [
+                {
+                  "label": "Music",
+                  "index": 137,
+                  "score": 0.7886632680892944
+                },
+                {
+                  "label": "A capella",
+                  "index": 255,
+                  "score": 0.7572923302650452
+                },
+                {
+                  "label": "Singing",
+                  "index": 27,
+                  "score": 0.46514785289764404
+                },
+                {
+                  "label": "Vocal music",
+                  "index": 254,
+                  "score": 0.4418652355670929
+                },
+                {
+                  "label": "Choir",
+                  "index": 28,
+                  "score": 0.43722671270370483
+                }
+              ],
+              "relevant_scores": {
+                "Music": 0.7886632680892944,
+                "Speech": 0.00988718867301941,
+                "Biting": 2.950429916381836e-06,
+                "Chewing, mastication": 2.771615982055664e-06
+              },
+              "scores_are_calibrated": false
+            },
+            {
+              "inference_seconds": 0.117182917,
+              "real_time_factor": 0.0117182917,
+              "top_events": [
+                {
+                  "label": "Music",
+                  "index": 137,
+                  "score": 0.7886632680892944
+                },
+                {
+                  "label": "A capella",
+                  "index": 255,
+                  "score": 0.7572923302650452
+                },
+                {
+                  "label": "Singing",
+                  "index": 27,
+                  "score": 0.46514785289764404
+                },
+                {
+                  "label": "Vocal music",
+                  "index": 254,
+                  "score": 0.4418652355670929
+                },
+                {
+                  "label": "Choir",
+                  "index": 28,
+                  "score": 0.43722671270370483
+                }
+              ],
+              "relevant_scores": {
+                "Music": 0.7886632680892944,
+                "Speech": 0.00988718867301941,
+                "Biting": 2.950429916381836e-06,
+                "Chewing, mastication": 2.771615982055664e-06
+              },
+              "scores_are_calibrated": false
+            },
+            {
+              "inference_seconds": 0.116193594,
+              "real_time_factor": 0.0116193594,
+              "top_events": [
+                {
+                  "label": "Music",
+                  "index": 137,
+                  "score": 0.7886632680892944
+                },
+                {
+                  "label": "A capella",
+                  "index": 255,
+                  "score": 0.7572923302650452
+                },
+                {
+                  "label": "Singing",
+                  "index": 27,
+                  "score": 0.46514785289764404
+                },
+                {
+                  "label": "Vocal music",
+                  "index": 254,
+                  "score": 0.4418652355670929
+                },
+                {
+                  "label": "Choir",
+                  "index": 28,
+                  "score": 0.43722671270370483
+                }
+              ],
+              "relevant_scores": {
+                "Music": 0.7886632680892944,
+                "Speech": 0.00988718867301941,
+                "Biting": 2.950429916381836e-06,
+                "Chewing, mastication": 2.771615982055664e-06
+              },
+              "scores_are_calibrated": false
+            }
+          ],
+          "memory_scope": "standalone_process_including_ART_and_native_runtime"
+        },
+        {
+          "schema_version": 1,
+          "mode": "tagging",
+          "runtime": "sherpa-onnx-1.13.8-android-arm64",
+          "provider": "cpu",
+          "threads": 2,
+          "fixture": "cat.wav",
+          "audio_duration_sec": 10,
+          "speaker": "unknown",
+          "subject": "unknown",
+          "microphone_started": false,
+          "camera_started": false,
+          "network_used": false,
+          "meal_created": false,
+          "model_load_seconds": 0.538339479,
+          "memory_before_release": {
+            "VmHWM": "390560 kB",
+            "VmRSS": "390560 kB"
+          },
+          "runs": [
+            {
+              "inference_seconds": 0.202943177,
+              "real_time_factor": 0.0202943177,
+              "top_events": [
+                {
+                  "label": "Animal",
+                  "index": 72,
+                  "score": 0.9423696994781494
+                },
+                {
+                  "label": "Cat",
+                  "index": 81,
+                  "score": 0.9253016710281372
+                },
+                {
+                  "label": "Domestic animals, pets",
+                  "index": 73,
+                  "score": 0.9230789542198181
+                },
+                {
+                  "label": "Meow",
+                  "index": 83,
+                  "score": 0.15193405747413635
+                },
+                {
+                  "label": "Caterwaul",
+                  "index": 85,
+                  "score": 0.14003106951713562
+                }
+              ],
+              "relevant_scores": {
+                "Speech": 0.008365809917449951,
+                "Music": 0.002680957317352295,
+                "Biting": 3.1322240829467773e-05,
+                "Chewing, mastication": 1.4275312423706055e-05
+              },
+              "scores_are_calibrated": false
+            },
+            {
+              "inference_seconds": 0.116458073,
+              "real_time_factor": 0.0116458073,
+              "top_events": [
+                {
+                  "label": "Animal",
+                  "index": 72,
+                  "score": 0.9423696994781494
+                },
+                {
+                  "label": "Cat",
+                  "index": 81,
+                  "score": 0.9253016710281372
+                },
+                {
+                  "label": "Domestic animals, pets",
+                  "index": 73,
+                  "score": 0.9230789542198181
+                },
+                {
+                  "label": "Meow",
+                  "index": 83,
+                  "score": 0.15193405747413635
+                },
+                {
+                  "label": "Caterwaul",
+                  "index": 85,
+                  "score": 0.14003106951713562
+                }
+              ],
+              "relevant_scores": {
+                "Speech": 0.008365809917449951,
+                "Music": 0.002680957317352295,
+                "Biting": 3.1322240829467773e-05,
+                "Chewing, mastication": 1.4275312423706055e-05
+              },
+              "scores_are_calibrated": false
+            },
+            {
+              "inference_seconds": 0.112478438,
+              "real_time_factor": 0.0112478438,
+              "top_events": [
+                {
+                  "label": "Animal",
+                  "index": 72,
+                  "score": 0.9423696994781494
+                },
+                {
+                  "label": "Cat",
+                  "index": 81,
+                  "score": 0.9253016710281372
+                },
+                {
+                  "label": "Domestic animals, pets",
+                  "index": 73,
+                  "score": 0.9230789542198181
+                },
+                {
+                  "label": "Meow",
+                  "index": 83,
+                  "score": 0.15193405747413635
+                },
+                {
+                  "label": "Caterwaul",
+                  "index": 85,
+                  "score": 0.14003106951713562
+                }
+              ],
+              "relevant_scores": {
+                "Speech": 0.008365809917449951,
+                "Music": 0.002680957317352295,
+                "Biting": 3.1322240829467773e-05,
+                "Chewing, mastication": 1.4275312423706055e-05
+              },
+              "scores_are_calibrated": false
+            }
+          ],
+          "memory_scope": "standalone_process_including_ART_and_native_runtime"
+        }
+      ]
+    },
+    "context-public-fixture.json": {
+      "schema_version": 1,
+      "endpoint": "/api/signals/context",
+      "posted": false,
+      "signals": [
+        {
+          "signalId": "audio-a62028bdd35ef42e915f7055f99a8946",
+          "text": "开放时间早上9点至下午5点。",
+          "speaker": "unknown",
+          "sourceContext": "test-fixture",
+          "observedAt": "2026-10-15T00:00:05.592Z",
+          "recentUtterances": [],
+          "audioEvents": [],
+          "dryRun": true,
+          "asrEvidence": {
+            "audioSha256": "b77f1794fe374a0ba1ee1dc458bfaf9349496cbbfc32780c50ba3c5a7ad8e373",
+            "captureStartedAt": "2026-10-15T00:00:00Z",
+            "windowStartSec": 0.442,
+            "windowEndSec": 5.592,
+            "speechVadVerified": true,
+            "languageTag": "<|zh|>",
+            "emotionTag": "<|NEUTRAL|>",
+            "eventTag": "<|Speech|>",
+            "speakerEvidence": null,
+            "audioEventScoresAreCalibrated": false
+          }
+        }
+      ]
+    }
+  }
+}

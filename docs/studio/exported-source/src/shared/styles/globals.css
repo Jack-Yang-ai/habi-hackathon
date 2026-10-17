@@ -1,0 +1,370 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans text-body antialiased;
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* 移动端：去掉点击高亮，抑制长按选中与橡皮筋回弹 */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    overscroll-behavior-y: none;
+  }
+
+  #root {
+    min-height: 100vh;
+    /* 安卓 WebView 与 iOS 上更稳定的视口高度；老内核由构建期重写 + polyfill 兜底 */
+    min-height: 100dvh;
+  }
+
+  /* 交互元素统一 44px 最小点击区域（见 references/07-mobile-adaptation.md） */
+  button,
+  [role='button'],
+  a {
+    touch-action: manipulation;
+  }
+
+  input,
+  textarea,
+  select {
+    /* 小于 16px 会触发移动端自动放大 */
+    font-size: max(16px, var(--text-body));
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer components {
+  /* 页面容器：统一左右留白（通用档 16）+ 顶部留白（12）+ 底部“留白 + 安全区”，并用 max-width 居中。
+   * 留白是必须的：少一它，页面的第一块 / 最后一块就会贴着顶栏与屏幕底。
+   * 底部额外让出 --safe-bottom——常规页面滚到底时，最后一条内容不落在手势条 / home indicator
+   * 下面（取值见 src/shared/native/safe-area.ts；全出血 / 沉浸式页面本来就不用 `.page`，不受影响）。
+   * **留白的方向性：纵向 ≤ 横向**（横向要够、纵向收敛）——横向承担“不贴边”，
+   * 纵向是密度杠杆，手机屏幕横向窄、纵向富余，两者不要反过来。
+   * 需要更大留白时在内容块上自行加（粘性栏 / 全屏媒体内用时用 py-* 覆盖）。
+   * 口径见 ui-design-skill 的 references/02-app-ui-mobile-h5.md §1「留白的方向性」。 */
+  .page {
+    @apply mx-auto w-full max-w-[640px] px-4 pt-3;
+    padding-bottom: calc(12px + var(--safe-bottom));
+  }
+
+  /* 密集档页面容器（左右 12 / 顶部 8；底部 = 8 + 安全区）：电商、信息流这类“一屏要塞进更多条目”的场景用它。
+   * 不要为了“看起来松一点”把纵向内边距写得比横向还大（纵向 > 横向会被门禁 G42 拦）。
+   * 口径见 ui-design-skill 的 references/04-commerce.md「密度档」与 02 §1。 */
+  .page-dense {
+    @apply mx-auto w-full max-w-[640px] px-3 pt-2;
+    padding-bottom: calc(8px + var(--safe-bottom));
+  }
+
+  /* 长列表项：跳过视口外的渲染，降低移动端首屏开销。
+   * 注意：不要改名成 `list-item`——Tailwind 自带同名 utility（`display: list-item`），
+   * 位于 utilities 层，会把行布局（flex/grid）盖掉。 */
+  .lazy-item {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 72px;
+  }
+
+  /* 分组列表行：分隔线左右内缩 16px（贴近原生分组列表，不贴容器边缘）、最后一行不出线。
+   * 线宽用发丝线（0.5px → 视网膜屏上的 1 物理像素，比 1px 更细，见 tokens.css 的 --hairline）。
+   * 用法：`<li className="list-row py-3">…</li>`（行高自己用 py-* 控制；长列表再叠加 `lazy-item`）。
+   * 口径见 ui-design-skill 的 references/02-app-ui-mobile-h5.md §3。 */
+  .list-row {
+    @apply relative flex items-center gap-3 px-4;
+  }
+
+  .list-row::after {
+    content: '';
+    @apply pointer-events-none absolute inset-x-4 bottom-0 bg-border;
+    height: var(--hairline);
+  }
+
+  .list-row:last-child::after {
+    display: none;
+  }
+
+  /* 单行/多行截断 */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ---------------------------------------------------------------------------
+   * SVG 绘图色（小伴、小屋、演示插画）
+   *
+   * 为什么不直接写 `fill="var(--companion-body)"`：SVG 的 presentation attribute
+   * **不解析 CSS 变量**——实测（WebView 内核）会整块退化成默认黑。所以图里的颜色
+   * 一律通过这些类给出：类内部是真正的 CSS 声明，能正常取到 tokens.css 的 token，
+   * 也就仍然满足「色值只在 tokens.css」这条约束。
+   *
+   * 命名：xb-fill-* / xb-stroke-* / xb-stop-*（stop-* 给渐变 stop 用）。
+   * ------------------------------------------------------------------------ */
+
+  /* 小伴本体 */
+  .xb-fill-body { fill: rgb(var(--companion-body)); }
+  .xb-fill-body-light { fill: rgb(var(--companion-body-light)); }
+  .xb-fill-body-deep { fill: rgb(var(--companion-body-deep)); }
+  .xb-fill-belly { fill: rgb(var(--companion-belly)); }
+  .xb-fill-leaf { fill: rgb(var(--companion-leaf)); }
+  .xb-fill-leaf-light { fill: rgb(var(--companion-leaf-light)); }
+  .xb-fill-face { fill: rgb(var(--companion-face)); }
+  .xb-fill-glint { fill: rgb(var(--companion-eye-glint)); }
+  .xb-fill-blush { fill: rgb(var(--companion-blush)); }
+  .xb-fill-shadow { fill: rgb(var(--companion-shadow)); }
+  .xb-fill-photo { fill: rgb(var(--companion-photo)); }
+  .xb-fill-photo-ink { fill: rgb(var(--companion-photo-ink)); }
+  .xb-fill-can { fill: rgb(var(--companion-pot)); }
+  .xb-fill-can-shade { fill: rgb(var(--companion-pot-shade)); }
+  .xb-stroke-face { stroke: rgb(var(--companion-face)); }
+  .xb-stroke-leaf { stroke: rgb(var(--companion-leaf)); }
+  .xb-stroke-photo-edge { stroke: rgb(var(--companion-photo-edge)); }
+  .xb-stop-body { stop-color: rgb(var(--companion-body)); }
+  .xb-stop-body-light { stop-color: rgb(var(--companion-body-light)); }
+
+  /* 小屋场景 */
+  .xb-fill-wall { fill: rgb(var(--scene-wall)); }
+  .xb-fill-wall-shade { fill: rgb(var(--scene-wall-shade)); }
+  .xb-fill-wood { fill: rgb(var(--scene-wood)); }
+  .xb-fill-wood-light { fill: rgb(var(--scene-wood-light)); }
+  .xb-fill-foliage { fill: rgb(var(--scene-foliage)); }
+  .xb-fill-foliage-far { fill: rgb(var(--scene-foliage-far)); }
+  .xb-fill-pot { fill: rgb(var(--scene-pot)); }
+  .xb-fill-pot-shade { fill: rgb(var(--scene-pot-shade)); }
+  .xb-fill-plant { fill: rgb(var(--scene-plant)); }
+  .xb-fill-plant-deep { fill: rgb(var(--scene-plant-deep)); }
+  .xb-fill-cup { fill: rgb(var(--scene-cup)); }
+  .xb-fill-cup-rim { fill: rgb(var(--scene-cup-rim)); }
+  .xb-fill-light { fill: rgb(var(--scene-light)); }
+  .xb-fill-sky-deep { fill: rgb(var(--scene-sky-deep)); }
+  .xb-stroke-cup { stroke: rgb(var(--scene-cup)); }
+  .xb-stop-sky { stop-color: rgb(var(--scene-sky)); }
+  .xb-stop-sky-fade { stop-color: rgb(var(--scene-sky-fade)); }
+  .xb-stop-light { stop-color: rgb(var(--scene-light)); }
+
+  /* 演示插画：一餐俯拍 */
+  .xb-fill-table { fill: rgb(var(--scene-table)); }
+  .xb-fill-table-grain { fill: rgb(var(--scene-table-grain)); }
+  .xb-fill-plate { fill: rgb(var(--scene-plate)); }
+  .xb-fill-plate-edge { fill: rgb(var(--scene-plate-edge)); }
+  .xb-fill-rice { fill: rgb(var(--scene-rice)); }
+  .xb-fill-rice-shade { fill: rgb(var(--scene-rice-shade)); }
+  .xb-fill-rice-grain { fill: rgb(var(--scene-rice-grain)); }
+  .xb-fill-greens { fill: rgb(var(--scene-greens)); }
+  .xb-fill-greens-deep { fill: rgb(var(--scene-greens-deep)); }
+  .xb-fill-egg-white { fill: rgb(var(--scene-egg-white)); }
+  .xb-fill-yolk { fill: rgb(var(--scene-yolk)); }
+  .xb-fill-yolk-light { fill: rgb(var(--scene-yolk-light)); }
+  .xb-fill-chopstick { fill: rgb(var(--scene-chopstick)); }
+  .xb-fill-chopstick-light { fill: rgb(var(--scene-chopstick-light)); }
+  .xb-stroke-greens-deep { stroke: rgb(var(--scene-greens-deep)); }
+  .xb-stroke-plate-edge { stroke: rgb(var(--scene-plate-edge)); }
+  .xb-stop-plate { stop-color: rgb(var(--scene-plate)); }
+  .xb-stop-plate-light { stop-color: rgb(var(--scene-plate-light)); }
+}
+
+@layer utilities {
+  /* 安全区工具类 */
+  .pt-safe-top {
+    padding-top: var(--safe-top);
+  }
+
+  .pb-safe-bottom {
+    padding-bottom: var(--safe-bottom);
+  }
+
+  .safe-bottom-inset {
+    bottom: var(--safe-bottom);
+  }
+
+  /* 顶部安全区垫底：把滚动容器的顶部安全区垫成页面主体背景色。
+   * 用 border 而不是 padding——滚动内容会被裁在状态栏之下，不会从状态栏区域透出来。
+   * 顶部是「全出血媒体」的页面不要加这个类，改用 useTopBleed() 声明穿透
+   * （见 references/07-mobile-adaptation.md §2）。 */
+  .safe-top-backdrop {
+    border-top: var(--safe-top) solid rgb(var(--background));
+  }
+
+  .animate-dialog-in {
+    animation: dialog-in var(--duration-base) var(--ease-standard);
+  }
+
+  .animate-fade-in {
+    animation: fade-in var(--duration-fast) var(--ease-standard);
+  }
+
+  .animate-slide-up {
+    animation: slide-up var(--duration-base) var(--ease-standard);
+  }
+
+  /* 整屏高度：这里只写原生 dvh，构建期由 postcss.config.js 的 viewport-unit 插件统一重写成
+     老内核可用的 calc(var(--1dvh))(原生内核经 var() 无损回退)；100vh 一行给「连 CSS 变量都不支持」的内核兜底 */
+  .h-screen-dvh {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .min-h-screen-dvh {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .scroll-y {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* ---- 小伴的呼吸与动作 ----
+ * 全部作用在 SVG 内部元素上，所以都要 set transform-box: fill-box —— 否则
+ * transform-origin 会按整个 SVG 的坐标算，团子会绕着画布外一点转。
+ * 幅度刻意很小：这是"活着"，不是"跳动"。 */
+@keyframes xiaoban-breathe {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.02, 0.985);
+  }
+}
+
+@keyframes xiaoban-sway {
+  0%,
+  100% {
+    transform: rotate(-1.6deg);
+  }
+  50% {
+    transform: rotate(1.6deg);
+  }
+}
+
+@keyframes xiaoban-drip {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-4px, 16px);
+    opacity: 0;
+  }
+}
+
+@keyframes xiaoban-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.xiaoban-breathe {
+  transform-box: fill-box;
+  transform-origin: 50% 92%;
+  animation: xiaoban-breathe 4.2s var(--ease-standard) infinite;
+}
+
+.xiaoban-breathe-slow {
+  transform-box: fill-box;
+  transform-origin: 50% 92%;
+  animation: xiaoban-breathe 6.4s var(--ease-standard) infinite;
+}
+
+.xiaoban-sway {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: xiaoban-sway 3.6s var(--ease-standard) infinite;
+}
+
+.xiaoban-drip {
+  transform-box: fill-box;
+  animation: xiaoban-drip 1.6s linear infinite;
+}
+
+.xiaoban-float {
+  transform-box: fill-box;
+  animation: xiaoban-float 2.8s var(--ease-standard) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

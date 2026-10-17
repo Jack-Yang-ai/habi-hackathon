@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "model": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20",
+  "runtime": "sherpa-onnx-1.13.8-android-cpu",
+  "archive": {
+    "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/kws-models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20.tar.bz2",
+    "bytes": 32885699,
+    "sha256": "68447f4fbc67e70eee3a93961f36e81e98f47aef73ce7e7ca00885c6cd3616a6"
+  },
+  "files": {
+    "encoder.int8.onnx": {
+      "archive_path": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/encoder-epoch-13-avg-2-chunk-8-left-64.int8.onnx",
+      "bytes": 4600657,
+      "sha256": "2ca84d6bfe73e1ea3c9c49f600f7cad1c9ddd423c53c906b8bfe802444dd78d5"
+    },
+    "decoder.onnx": {
+      "archive_path": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/decoder-epoch-13-avg-2-chunk-8-left-64.onnx",
+      "bytes": 759829,
+      "sha256": "63a22dd60f40fff082ac3e09afa507f6787da36df76ded2fbe145fa233e22c21"
+    },
+    "joiner.int8.onnx": {
+      "archive_path": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/joiner-epoch-13-avg-2-chunk-8-left-64.int8.onnx",
+      "bytes": 86629,
+      "sha256": "190d4067b4cc20b72a42a1916e69d92052000fb7051a427ebb1bc72a69207dc1"
+    },
+    "tokens.txt": {
+      "archive_path": "sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/tokens.txt",
+      "bytes": 1928,
+      "sha256": "2d3f32311f9b692b964da3c90e830258d3e78e013cb0c992dbfb15cd5a1a71b0"
+    },
+    "keywords.txt": {
+      "content": "h ā b ǐ @哈比\nh ēi b ǐ @哈比\n",
+      "bytes": 37,
+      "sha256": "fd34ec90b9efb802886d86a68285873bca0bbc775c18eb6eecac17d23c6d0a75"
+    }
+  },
+  "sources": {
+    "KeywordSpotter.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/KeywordSpotter.kt",
+      "bytes": 5062,
+      "sha256": "6d8387534b942a979424a1d6721fd285f85df8bfca0ea392860f11fe06f31d06"
+    },
+    "OnlineRecognizer.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/OnlineRecognizer.kt",
+      "bytes": 30509,
+      "sha256": "3204ff816361d99d94dda1e8c26681f6d4a5ad749a68d8fee93b4e8bb2b21d17"
+    },
+    "OnlineStream.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/OnlineStream.kt",
+      "bytes": 1178,
+      "sha256": "6b9f8de317e6a0bb51f0f29d940617b781cb31b190e1c725dd438231836c06ab"
+    }
+  },
+  "wake_word": "哈比",
+  "command": "记录",
+  "sample_rate": 16000,
+  "chunk_ms": 160,
+  "keywords_score": 2.0,
+  "keywords_threshold": 0.2,
+  "num_trailing_blanks": 1,
+  "wake_window_seconds": 6,
+  "cooldown_seconds": 4,
+  "max_active_paths": 8,
+  "phonetic_alias_note": "The second pronunciation is observed in the authorized Habi-record phone sample; display name remains 哈比. Full-utterance SenseVoice confirmation is required before a photo.",
+  "command_tokens": "j ì l ù @记录",
+  "stream_graph": "empty_default_graph_with_separate_wake_and_command_keywords"
+}

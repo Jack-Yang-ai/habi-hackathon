@@ -1,0 +1,6 @@
+# Local verification artifacts from the exported Studio source.
+exported-source/node_modules/
+exported-source/dist/
+exported-source/capsule/signing/*.p12
+exported-source/capsule/signing/*.jks
+exported-source/capsule/signing/*.properties

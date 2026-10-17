@@ -1,0 +1,17 @@
+{
+  "name": "de-companion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.16" },
+  "workspaces": ["apps/*", "services/*"],
+  "scripts": {
+    "dev": "node tools/dev.mjs",
+    "dev:api": "node --watch --env-file-if-exists=.env services/api/src/server.mjs",
+    "start": "node --env-file-if-exists=.env services/api/src/server.mjs",
+    "build": "npm run build --workspace apps/studio",
+    "test": "node --test services/api/test/*.test.mjs",
+    "check": "node --check services/api/src/app.mjs && node --check services/api/src/store.mjs && node --check services/api/src/provider.mjs && node --check services/api/src/trigger.mjs && node --check services/api/src/capture-review.mjs && node --check services/api/src/amap.mjs && node --check services/api/src/dining.mjs && node --check services/api/src/dining-routes.mjs && node --check services/api/src/server.mjs",
+    "verify": "npm run check && npm test && npm run build"
+  }
+}

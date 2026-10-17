@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "hf_tokenizer_sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+  "add_special_tokens": false,
+  "vectors": [
+    {
+      "text": "A",
+      "ids": [
+        32
+      ]
+    },
+    {
+      "text": "B",
+      "ids": [
+        33
+      ]
+    },
+    {
+      "text": "C",
+      "ids": [
+        34
+      ]
+    },
+    {
+      "text": "D",
+      "ids": [
+        35
+      ]
+    },
+    {
+      "text": "E",
+      "ids": [
+        36
+      ]
+    },
+    {
+      "text": "F",
+      "ids": [
+        37
+      ]
+    },
+    {
+      "text": "G",
+      "ids": [
+        38
+      ]
+    },
+    {
+      "text": "H",
+      "ids": [
+        39
+      ]
+    },
+    {
+      "text": "I",
+      "ids": [
+        40
+      ]
+    },
+    {
+      "text": "J",
+      "ids": [
+        41
+      ]
+    },
+    {
+      "text": "Context:\nPrevious: \nSpeaker: unknown\nSource: unknown\nMessage: 我要去吃饭了",
+      "ids": [
+        1905,
+        25,
+        198,
+        20636,
+        25,
+        695,
+        79204,
+        25,
+        9496,
+        198,
+        3488,
+        25,
+        9496,
+        198,
+        1984,
+        25,
+        220,
+        101660,
+        96105,
+        108776,
+        95759
+      ]
+    },
+    {
+      "text": "\n\nQuestion: What is the speaker's meal intent right now?\nOptions:\n(A) Preparing to eat food right now or immediately.\n(B) An invitation to eat, not yet accepted.\n(C) Currently eating food.\n(D) Already finished eating.\n(E) Refusing or cancelling food.\n(F) Unrelated, other people, media, future or hypothetical meals.\n(G) Insufficient evidence of current eating intent.\nAnswer: (",
+      "ids": [
+        271,
+        14162,
+        25,
+        3437,
+        369,
+        279,
+        18040,
+        579,
+        14704,
+        7151,
+        1245,
+        1381,
+        30,
+        198,
+        3670,
+        25,
+        198,
+        4205,
+        8,
+        4807,
+        42684,
+        310,
+        7923,
+        3487,
+        1245,
+        1381,
+        466,
+        6849,
+        13,
+        198,
+        5181,
+        8,
+        1473,
+        27749,
+        310,
+        7923,
+        11,
+        524,
+        3482,
+        11330,
+        13,
+        198,
+        2929,
+        8,
+        23394,
+        11834,
+        3487,
+        13,
+        198,
+        5263,
+        8,
+        38205,
+        7807,
+        11834,
+        13,
+        198,
+        10406,
+        8,
+        8288,
+        940,
+        466,
+        93571,
+        3487,
+        13,
+        198,
+        7584,
+        8,
+        1188,
+        9433,
+        11,
+        975,
+        1208,
+        11,
+        3561,
+        11,
+        3725,
+        466,
+        56111,
+        20329,
+        13,
+        198,
+        6489,
+        8,
+        9437,
+        25831,
+        5721,
+        314,
+        1428,
+        11834,
+        7151,
+        13,
+        198,
+        15666,
+        25,
+        318
+      ]
+    },
+    {
+      "text": "你要不要吃？ 我正在吃午饭。 开放时间与开饭时间。🍚",
+      "ids": [
+        108879,
+        128982,
+        10992,
+        220,
+        137086,
+        96481,
+        126195,
+        1710,
+        220,
+        98865,
+        136927,
+        95915,
+        97586,
+        96341,
+        1710,
+        9008,
+        235,
+        248
+      ]
+    }
+  ]
+}

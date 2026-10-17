@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.DUMP" />
+    <instrumentation android:name="com.withecho.companion.FileValidationInstrumentation"
+        android:targetPackage="${applicationId}" android:label="Synthetic file validation (no microphone)" />
+    <instrumentation android:name="com.withecho.companion.VoiceCommandValidationInstrumentation"
+        android:targetPackage="${applicationId}" android:label="Voice command grammar validation (no microphone or camera)" />
+    <instrumentation android:name="com.withecho.companion.KwsValidationInstrumentation"
+        android:targetPackage="${applicationId}" android:label="KWS file replay (no microphone or camera)" />
+    <instrumentation android:name="com.withecho.companion.RearAccessValidationInstrumentation"
+        android:targetPackage="${applicationId}" android:label="Rear display app UID probe (empty slot only)" />
+</manifest>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="小伴">
+  <!-- 应用图标：苔绿底 + 小伴的头（叶子 + 团子 + 眼睛 + 腮红）。
+       独立 SVG 文件里用十六进制色值是允许的（门禁只扫 ts/tsx/js/jsx/css/html），
+       色值取自 tokens.css 的 moss-600 / moss-100 / moss-400 / moss-500 / ink-900 / blush-200。 -->
+  <rect width="64" height="64" rx="15" fill="#46663C" />
+  <path d="M34 22 C36 13 42 7 51 5 C49 16 42 22 34 22 Z" fill="#8FAC74" />
+  <path d="M30 22 C28 13 22 7 13 5 C15 16 22 22 30 22 Z" fill="#6E8D56" />
+  <circle cx="32" cy="38" r="16" fill="#E3EADA" />
+  <ellipse cx="21" cy="43.5" rx="3.6" ry="2.2" fill="#E9BDAC" opacity="0.9" />
+  <ellipse cx="43" cy="43.5" rx="3.6" ry="2.2" fill="#E9BDAC" opacity="0.9" />
+  <circle cx="26.4" cy="36.5" r="2.9" fill="#21241E" />
+  <circle cx="37.6" cy="36.5" r="2.9" fill="#21241E" />
+  <circle cx="27.4" cy="35.4" r="1" fill="#FFFDFA" />
+  <circle cx="38.6" cy="35.4" r="1" fill="#FFFDFA" />
+</svg>

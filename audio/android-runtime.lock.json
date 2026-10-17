@@ -1,0 +1,57 @@
+{
+  "version": "1.13.8",
+  "source_commit": "11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf",
+  "runtime": {
+    "name": "sherpa-onnx-v1.13.8-android.tar.bz2",
+    "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/v1.13.8/sherpa-onnx-v1.13.8-android.tar.bz2",
+    "bytes": 46093321,
+    "sha256": "2ff63469a71cb6009aa2e3ed5f4a670f8abdcbe4bb9ffd23776afc792a6b4f44",
+    "files": {
+      "jniLibs/arm64-v8a/libonnxruntime.so": {
+        "bytes": 22249560,
+        "sha256": "33847ad43bffe204699fd4a27f7f3603452a8cdaf2f9a44983a0bc31ffcf2da1"
+      },
+      "jniLibs/arm64-v8a/libsherpa-onnx-jni.so": {
+        "bytes": 4771760,
+        "sha256": "3c6492ea91ea68fd3b72b9495efdde6dd913f6b58c387e3b07389cf335f4d26f"
+      }
+    }
+  },
+  "sources": {
+    "OfflineRecognizer.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/OfflineRecognizer.kt",
+      "bytes": 56380,
+      "sha256": "85054fa9722913bce96c94c5c7eaaa7fd99606b79fbfbeac6cfb60040eae2164"
+    },
+    "OfflineStream.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/OfflineStream.kt",
+      "bytes": 1080,
+      "sha256": "5c90b7c060cdd0a2222cc935b54f69465a4a7544de29240bafe4d3a8d86dbb6e"
+    },
+    "AudioTagging.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/AudioTagging.kt",
+      "bytes": 5105,
+      "sha256": "ca873e716e7ccb3e86443e38f7b5f840bb4ccd067532b6c26454fab3956d3f88"
+    },
+    "FeatureConfig.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/FeatureConfig.kt",
+      "bytes": 301,
+      "sha256": "829c7adc4db1324f21b9a9cbf5bf10eacf759714fe50956f48317c1ffef044f6"
+    },
+    "HomophoneReplacerConfig.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/HomophoneReplacerConfig.kt",
+      "bytes": 170,
+      "sha256": "fe926b6413f4d87e67c41feb21b8363923a67cbd3a5eb687b76390a5f1f7db60"
+    },
+    "QnnConfig.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/QnnConfig.kt",
+      "bytes": 156,
+      "sha256": "86c963f27677f690eb0d6639735052eba5e60d9f81ccd4c1df0aa831fd680d6f"
+    },
+    "WaveReader.kt": {
+      "url": "https://raw.githubusercontent.com/k2-fsa/sherpa-onnx/11afbd009a7f8c08f4bcf2fc1b265d0df4670fbf/sherpa-onnx/kotlin-api/WaveReader.kt",
+      "bytes": 1416,
+      "sha256": "1b4abcf6c7afdb6e8cc4cd4a71098eec4b45c473b470c71671fd20b641aee8e7"
+    }
+  }
+}
