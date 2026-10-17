@@ -62,6 +62,8 @@ STEPFUN_VISION_URL=https://api.stepfun.com/v1/chat/completions
 
 只注入 `STEPFUN_API_KEY` 时默认选官方端点和该模型。`FOOD_MODEL_BASE_URL / FOOD_MODEL_API_KEY / FOOD_MODEL_NAME` 的显式配置优先。完整 `/chat/completions` URL 会归一到 base URL，避免重复拼接。
 
+陪伴对话不在这条视觉复用路径内：`CHAT_MODEL_NAME` 独立配置，官方 StepFun 端点在未显式设置时默认 `step-5-preview`。它不会改变照片复核使用的 `step-1o-turbo-vision`，两条调用可以分别覆盖。
+
 环境里偶然存在的 `STEPFUN_API_KEY` 只会自动发给官方 `https://api.stepfun.com` origin；自定义网关必须明确提供 `FOOD_MODEL_API_KEY`。没有把密钥透传至网页。
 
 Provider 可接 `analyze(buffer,mime,{ images:[{buffer,mime}], note })`，最多六张图片；当前 API 如何选同餐来源仍由业务路由明确决定。未替调用方默默读取更多照片。
@@ -74,7 +76,9 @@ Provider 可接 `analyze(buffer,mime,{ images:[{buffer,mime}], note })`，最多
 
 八项离线 Provider 回归已通过：默认模型/端点与参数、旧URL归一、显式覆盖、凭据不继承到无关网关、多图与文字、旧单点结构拒绝、上游非JSON、无食物字段收口。这些离线回归的图片字节和模型输出均为合成夹具。
 
-用户随后在当前工程本机 `.env` 填入 `STEPFUN_API_KEY`，文件权限 0600，Git 忽略。2026-10-15 完成两次真实官方接口调用：512×512 合成无食物测试图返回 `foodDetected=false / calorieRange=null`，约 1435 ms；中性问候的模型对话约 677 ms。报告在被忽略的 `output/validation/step-interface-check.json` 和 `step-chat-check.json`。这些只是单次调用可达性、模型读取图片与结构化响应验证，未作为用户餐记录保存。
+用户随后在当前工程本机 `.env` 填入 `STEPFUN_API_KEY`，文件权限 0600，Git 忽略。2026-10-15 完成两次真实官方接口调用：512×512 合成无食物测试图返回 `foodDetected=false / calorieRange=null`，约 1435 ms；中性问候的模型对话约 677 ms（当时对话模型是 `step-1o-turbo-vision`）。报告在被忽略的 `output/validation/step-interface-check.json` 和 `step-chat-check.json`。这些只是单次调用可达性、模型读取图片与结构化响应验证，未作为用户餐记录保存。
+
+2026-10-17 把陪伴对话的默认模型切到 `step-5-preview`，并用同一服务端密钥做了一次真实问候调用：HTTP 200，约 1.74 s，返回中文短句。只验证模型 ID 可调用与对话格式，未重测视觉模型，也不代表长期延迟、并发或准确率。已有部署升级时要把 `.env` 的 `CHAT_MODEL_NAME` 更新为 `step-5-preview` 并重启服务；显式配置优先于代码默认值。
 
 本机服务已重新加载配置，`analysisConfigured=true / chatMode=model`，餐食数量仍为 0。真实餐食识别、份量和热量误差、持续延迟仍待单独验收。原仓库注释里的20张图 benchmark属于旧项目记录，没有改写成本 App 的实测结果。
 

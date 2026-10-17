@@ -23,7 +23,7 @@ def main():
     values = {'HOST': '0.0.0.0' if args.lan else '127.0.0.1', 'PORT': str(args.port), 'DATA_DIR': '.data',
               'APP_ACCESS_TOKEN': secrets.token_urlsafe(32), 'DEVICE_ACCESS_TOKEN': secrets.token_urlsafe(32),
               'STEPFUN_API_KEY': key, 'FOOD_MODEL_PROVIDER': 'stepfun',
-              'FOOD_MODEL_NAME': 'step-1o-turbo-vision', 'CHAT_MODEL_NAME': 'step-1o-turbo-vision'}
+              'FOOD_MODEL_NAME': 'step-1o-turbo-vision', 'CHAT_MODEL_NAME': 'step-5-preview'}
     with os.fdopen(os.open(str(target), os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600), 'w') as output:
         output.write('\n'.join(name + '=' + json.dumps(value) for name, value in values.items()) + '\n')
     print(json.dumps({'configuration': str(target), 'lanEnabled': args.lan, 'port': args.port,

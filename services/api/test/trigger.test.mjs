@@ -324,3 +324,34 @@ test('CAPTURE_COOLDOWN_MS lets a bench session open probes back to back', async 
   const second = await post(app, '/api/signals/context', input({ signalId: 'cooldown-override-b' }));
   assert.equal(second.json().signal.action, 'capture_window', 'bench override skips the wait');
 });
+
+test('哈比看看 opens a bounded board capture window and skips the cooldown', async t => {
+  const { app } = await setup(t);
+  await post(app, '/api/device/pause', { paused: false });
+  const first = await post(app, '/api/signals/context', input({ signalId: 'board-cmd-a', text: '哈比看看' }));
+  const plan = first.json().signal;
+  assert.equal(plan.action, 'capture_window', first.body);
+  assert.equal(plan.reason, 'explicit_board_command');
+  assert.equal((await config(app)).capture_window.remaining, 1);
+  // A second explicit command must not be deferred by the five minute trigger cooldown.
+  const second = await post(app, '/api/signals/context', input({ signalId: 'board-cmd-b', text: '哈比看看' }));
+  assert.equal(second.json().signal.action, 'capture_window');
+  assert.equal(second.json().signal.reason, 'explicit_board_command');
+});
+
+test('哈比看看 is a whole-utterance command, not a substring trigger', async t => {
+  const { app } = await setup(t);
+  await post(app, '/api/device/pause', { paused: false });
+  for (const [index, text] of ['他说哈比看看', '明天哈比看看', '哈比不要看看'].entries()) {
+    const response = await post(app, '/api/signals/context', input({ signalId: `board-cmd-neg-${index}`, text }));
+    assert.notEqual(response.json().signal.reason, 'explicit_board_command', text);
+  }
+});
+
+test('哈比记录 still asks the phone camera instead of the board', async t => {
+  const { app } = await setup(t);
+  await post(app, '/api/device/pause', { paused: false });
+  const response = await post(app, '/api/signals/context', input({ signalId: 'phone-cmd-a', text: '哈比记录' }));
+  assert.equal(response.json().signal.action, 'phone_capture');
+  assert.equal((await config(app)).capture_window, null);
+});

@@ -17,6 +17,7 @@ test('health-agent StepFun aliases select the exact vision model and official Ch
   });
   assert.equal(provider.visionConfigured, true);
   assert.equal(provider.visionModel, 'step-1o-turbo-vision');
+  assert.equal(provider.chatModel, 'step-5-preview');
   assert.deepEqual(await provider.analyze(image, 'image/jpeg'), { ...estimate, imageQuality: 'unknown', macros: null });
   assert.equal(request.url, 'https://api.stepfun.com/v1/chat/completions');
   assert.equal(request.body.model, 'step-1o-turbo-vision');
@@ -46,6 +47,20 @@ test('explicit compatible-provider configuration continues to take precedence', 
   assert.equal(provider.visionModel, 'fixture');
   assert.equal(provider.apiKey, 'custom-test-only');
   assert.equal(provider.stepVision, false);
+  // A custom gateway must opt into chat explicitly; it must not inherit Step 5 Preview.
+  assert.equal(provider.chatConfigured, false);
+});
+
+test('companion chat defaults to step-5-preview without changing the vision model', async () => {
+  let body;
+  const provider = new ModelProvider({ STEPFUN_API_KEY: 'synthetic-test-only' }, async (_url, init) => {
+    body = JSON.parse(init.body); return response('我在这里。');
+  });
+  assert.equal(provider.chatConfigured, true);
+  assert.equal(await provider.chat('你好', [], {}), '我在这里。');
+  assert.equal(body.model, 'step-5-preview');
+  assert.equal(body.max_tokens, 1200);
+  assert.equal(provider.visionModel, 'step-1o-turbo-vision');
 });
 
 test('same-meal images and a user note are passed together without assuming actual intake', async () => {
@@ -95,6 +110,21 @@ test('whole-plate macros are parsed when present, dropped when malformed, and cl
   assert.equal((await none.analyze(image, 'image/jpeg')).macros, null);
 });
 
+test('the vision prompt requires whole-plate macros whenever food is recognized', async () => {
+  const macros = { proteinG: 1, carbsG: 12, fatG: 0 };
+  let prompt;
+  const provider = new ModelProvider({ STEPFUN_API_KEY: 'synthetic-test-only' }, async (_url, init) => {
+    prompt = JSON.parse(init.body).messages[0].content;
+    return response(JSON.stringify({ ...estimate, macros }));
+  });
+  assert.deepEqual((await provider.analyze(image, 'image/jpeg')).macros, macros);
+  // The model used to answer macros:null for plain foods because the prompt offered an unconditional
+  // null. A recognized food now has to carry three numbers; null stays reserved for unrecognizable food.
+  assert.match(prompt, /只要识别出食物就必须给出三个数字/);
+  assert.match(prompt, /只有完全无法辨认食物成分时才为null/);
+  assert.match(prompt, /没有食物时foodDetected=false、foods=\[\]、calorieRange=null、macros=null/);
+});
+
 test('a food calorie estimate still needs a meaningful uncertainty statement', async () => {
   for (const uncertainties of [[], ['  ']]) {
     const provider = new ModelProvider({ STEPFUN_API_KEY: 'synthetic-test-only' },
@@ -109,6 +139,7 @@ test('chat prompt distinguishes meal text from photo pixels and requires explici
     body = JSON.parse(init.body); return response('请确认这餐的补充。');
   });
   await provider.chat('汤没喝', [], { selectedMeal: { id: 'meal-fixture', foods: [] } });
+  assert.equal(body.model, 'fixture-chat');
   assert.match(body.messages[0].content, /用户还需要在界面明确确认/);
   assert.match(body.messages[0].content, /不包含照片像素/);
   assert.match(body.messages[0].content, /不能据此计算整餐比例/);

@@ -60,19 +60,27 @@ try {
   if (health.status !== 200 || healthBody?.ok !== true) required('health', { httpStatus: health.status, body: healthBody });
   else check('health', 'pass', { httpStatus: health.status, service: healthBody.service });
 
-  // 2. Deployment freshness: the served frontend bundle must be the one this checkout builds.
+  // 2. Deployment freshness: the served frontend bundle should match the build this checkout
+  //    produces. Only an explicit --expect-bundle is a hard assertion. Without it a difference is a
+  //    warning, because the local dist can legitimately contain work that has not been pushed yet.
   try {
     const page = await fetchWithTimeout(`${base}/`);
     const html = await page.text();
     const remoteBundle = /\/assets\/(index-[A-Za-z0-9_-]+\.js)/.exec(html)?.[1] ?? null;
     const localHtml = await readFile(values['local-dist'], 'utf8');
     const localBundle = /\/assets\/(index-[A-Za-z0-9_-]+\.js)/.exec(localHtml)?.[1] ?? null;
-    const expected = values['expect-bundle'] ?? (values['local-dist'] === 'apps/studio/dist/index.html' ? localBundle : null);
+    const expected = values['expect-bundle'] ?? null;
     const detail = { httpStatus: page.status, remoteBundle, localBundle, expectedBundle: expected };
-    if (!remoteBundle) required('deployment-bundle', detail);
-    else if (expected && remoteBundle !== expected) required('deployment-bundle', { ...detail, reason: '线上前端不是这一版，Mac mini 还没同步/重启' });
-    else if (localBundle && remoteBundle !== localBundle) check('deployment-bundle', 'warn', { ...detail, reason: '本地 dist 与线上不同；如果这正是未推送的改动就正常' });
-    else check('deployment-bundle', 'pass', detail);
+    if (!remoteBundle) {
+      if (expected) required('deployment-bundle', detail);
+      else check('deployment-bundle', 'warn', { ...detail, reason: '没有从线上首页解析出前端包名' });
+    } else if (expected) {
+      if (remoteBundle !== expected) required('deployment-bundle', { ...detail, reason: '线上前端不是 --expect-bundle 指定的那一版；Mac mini 可能没同步/没重新构建/没重启' });
+      else check('deployment-bundle', 'pass', detail);
+    } else if (localBundle && remoteBundle !== localBundle) {
+      check('deployment-bundle', 'warn', { ...detail,
+        reason: '线上与本地 dist 不同：本地可能含未推送改动（正常）；要硬性核对线上版本请加 --expect-bundle' });
+    } else check('deployment-bundle', 'pass', detail);
   } catch (error) {
     if (values['expect-bundle']) required('deployment-bundle', { error: error.message.slice(0, 300) });
     else check('deployment-bundle', 'warn', { error: error.message.slice(0, 300) });

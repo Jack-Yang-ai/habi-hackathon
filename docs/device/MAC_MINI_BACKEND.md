@@ -6,7 +6,7 @@
 
 手机保存原始录音并运行SenseVoice和Decider。Mac mini运行单个Node服务，SQLite和原图留在其本地`.data/`；Step密钥只保存在Mac mini的私有`.env`。食物识别与陪伴对话联网调用Step，不要求另租应用服务器或数据库。
 
-已重新核对私有health-agent主分支最新commit `67dedf452212cb53ba3ab343fb86b3af8a92bcb7`，`server/food_vision.py`的Git blob为`b00dde26b255257223b30dcb1663335559ff71b1`。复用其官方`https://api.stepfun.com/v1/chat/completions`、`step-1o-turbo-vision`、4096 tokens、temperature=0.2、120秒超时。详细字段边界见[调用复用说明](../models/health-agent-reuse.md)。
+已重新核对私有health-agent主分支最新commit `67dedf452212cb53ba3ab343fb86b3af8a92bcb7`，`server/food_vision.py`的Git blob为`b00dde26b255257223b30dcb1663335559ff71b1`。复用其官方`https://api.stepfun.com/v1/chat/completions`、`step-1o-turbo-vision`、4096 tokens、temperature=0.2、120秒超时。详细字段边界见[调用复用说明](../models/health-agent-reuse.md)。陪伴对话是独立的 `CHAT_MODEL_NAME` 配置，默认 `step-5-preview`，不改变照片复核模型。
 
 本工程继续用热量区间和本人食量确认，不把原项目的单点热量当成摄入事实。已修复真实Step响应`foodDetected=false / uncertainties=[]`被错误拒绝的问题；有食物的估算仍须说明不确定性。
 

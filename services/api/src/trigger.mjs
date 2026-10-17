@@ -15,6 +15,14 @@ export function isPhoneCameraCommand(text) {
   return /^(?:habi|哈比|happy)记录$/u.test(compact);
 }
 
+// "哈比看看" asks the paired wearable camera for one frame. It is a different command from
+// "哈比记录" on purpose: the phone answers its own camera immediately, while the board is a
+// polled device, so this one opens a bounded capture window instead of taking a photo inline.
+export function isBoardCameraCommand(text) {
+  const compact = text.replace(/[\s，,。.!！?？、：:]/gu, '').toLowerCase();
+  return /^(?:habi|哈比|happy)看看$/u.test(compact);
+}
+
 /** Context is an acquisition hint, never a claim that food was consumed. */
 export class ContextTrigger {
   constructor(env = process.env, fetcher = fetch) {
@@ -41,6 +49,7 @@ export class ContextTrigger {
     if (input.speaker === 'other' && !(input.sourceContext === 'user-conversation' && invitation.test(text)))
       return { ...base, stage: 'unrelated', reason: 'media_or_other_person', hardVeto: true };
     if (isPhoneCameraCommand(text)) return { ...base, reason: 'explicit_camera_command' };
+    if (isBoardCameraCommand(text)) return { ...base, reason: 'explicit_board_command' };
     if (/不吃了|不去吃|先不吃|取消.*吃饭|我不饿|不想吃|已经吃饱|(?:不是|并不|没有)(?:要|准备|打算).*吃/.test(text)
         || /(?:不|没有)(?:准备|打算).*(?:吃|用餐|食堂|餐厅|饭店)/.test(text)
         || (!invitation.test(text) && /不吃(?:饭|午饭|晚饭|早饭)|不要吃/.test(text)))
@@ -130,6 +139,10 @@ export function triggerPlan(classification, input, settings, now, cooldownMs = 5
   if (settings.paused) return { ...result, reason: 'user_paused' };
   if (classification.reason === 'explicit_camera_command')
     return { ...result, action: 'phone_capture', reason: 'explicit_camera_command', maxCaptures: 1 };
+  // An explicit "哈比看看" is a direct request for one wearable frame, so it skips the trigger
+  // cooldown that exists to stop ambient clues from probing over and over.
+  if (classification.reason === 'explicit_board_command')
+    return { ...result, action: 'capture_window', reason: 'explicit_board_command', captureWindowSeconds: 45, maxCaptures: 1 };
   const possibleMeal = ['start_soon', 'eating_now', 'invited'].includes(classification.stage)
     || mealWords.test(input.text);
   if (!possibleMeal) return result;
@@ -145,6 +158,7 @@ export function applyTrigger(store, classification, input, dryRun = true, cooldo
   const output = { ...plan, classification, dryRun, receivedAt: store.now(), signalId: input.signalId,
     observedAt: input.observedAt, speaker: input.speaker, sourceContext: input.sourceContext,
     note: plan.action === 'phone_capture' ? '明确拍照口令，请手机拍一张；不代表已看到食物或实际进食。'
+      : plan.reason === 'explicit_board_command' ? '明确口令，已请随身相机拍一张；不代表已看到食物或实际进食。'
       : '准备去吃饭即可成为采集线索；不代表已看到食物、实际进食或热量。' };
   const fingerprint = createHash('sha256').update(JSON.stringify({ text: input.text, speaker: input.speaker,
     sourceContext: input.sourceContext, observedAt: input.observedAt, recentUtterances: input.recentUtterances ?? [],

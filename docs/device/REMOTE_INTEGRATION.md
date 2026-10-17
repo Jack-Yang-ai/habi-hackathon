@@ -14,7 +14,7 @@ node --env-file-if-exists=.env tools/backend/check-remote.mjs \
 - `APP_ACCESS_TOKEN` / `DEVICE_ACCESS_TOKEN` 取 Mac mini 部署目录 `.env` 里的两份口令（`configure.py` 生成）。只在环境变量或命令行里用，不写进代码、不提交、不贴进文档；脚本也从不打印它们。
 - 也可以在本机 `.env`（Git 忽略）写 `HABI_REMOTE_BASE_URL` / `HABI_REMOTE_APP_TOKEN` / `HABI_REMOTE_DEVICE_TOKEN`，命令后半段全省略。
 - `--photo`：用 `tools/backend/fixtures/no-food.png` 走一遍**真实的手机拍照上传→Step 复核→查询结果**路由，随后用正常的撤回接口删掉这张合成照片（`--keep-photo` 可保留）。默认不带 `--photo` 时只读。
-- `--expect-bundle`：断言线上页面加载的前端包名。它必须是 **Mac mini 实际运行的那次提交**构建出的包，而不是本机未提交工作区的包。截至 2026-10-17，已推送的最新提交 `f904dab` 的构建是 `index-wZ3wwjE_.js`；如果本机还有未提交的前端改动，`apps/studio/dist` 的包名会不同，此时不加 `--expect-bundle` 只会得到 `warn`（“这正是未推送的改动”）。
+- `--expect-bundle`：断言线上页面加载的前端包名。它必须是 **Mac mini 实际运行的那次提交**构建出的包，而不是本机未提交工作区的包。2026-10-17 18:2x 复检时线上已同步到已推送最新提交 `f904dab`，构建为 `index-wZ3wwjE_.js`，所以断言用这个值。本机 `apps/studio/dist` 还含未推送的前端改动（含 UUID 兼容与真机 UI 调整），包名不同；不加 `--expect-bundle` 时这种差异只记为 `warn`，不会误报失败。
 - 报告写到 `output/validation/remote-check.json`（Git 忽略）；任何 `fail` 都会让退出码为 1。
 
 脚本检查六项：
@@ -22,7 +22,7 @@ node --env-file-if-exists=.env tools/backend/check-remote.mjs \
 | 检查 | 通过条件 | 失败意味着什么 |
 | --- | --- | --- |
 | `health` | `GET /health` 200 | 部署或隧道挂了 |
-| `deployment-bundle` | 线上 `/assets/index-*.js` 与本机构建一致（给 `--expect-bundle` 时硬性） | Mac mini 跑的是旧代码 |
+| `deployment-bundle` | 线上 `/assets/index-*.js` 等于 `--expect-bundle`；未指定时只把差异记为 warn | 给出 `--expect-bundle` 后仍不一致：Mac mini 没同步/没重新构建/没重启 |
 | `app-session` | `POST /api/session` 200 且返回 `de_session` | 连接口令不对，或服务重启后会话失效 |
 | `app-state` | `GET /api/state` 200，且 `config.analysisConfigured` 为真 | 口令不对；或线上没有配 `STEPFUN_API_KEY`，照片能传但永远不会识别 |
 | `device-auth` | 带板子 token 的 `POST /api/device/captures` 得到 400（空上传被拒，鉴权已通过） | 服务端 `DEVICE_ACCESS_TOKEN` 与板子不一致 → 随身相机 401 |
@@ -41,6 +41,24 @@ device-auth       fail   板子 token 被 401
 
 1. **线上是 10/16 的旧版本。** 线上前端包与 `05c3485` 的构建逐字节同名（用 `git archive` 各提交重跑 `vite build` 对照得出），说明 Mac mini 还没同步 10/17 的提交；其中 `50d487e` 修的正是 ESP32 上传元信息的兼容问题。修复方式：Mac mini 上 `git pull` 后重新构建前端、重启服务，再跑本脚本确认 `deployment-bundle` 变绿。
 2. **设备 token 不一致。** 板子固件里的 token 来自本机 `.tools/esp32/device-token`，手机中继会把它原样转发；Mac mini 的 `.env` 里 `DEVICE_ACCESS_TOKEN` 是另一份随机值，所以 `/api/device/*` 全部 401，随身相机的照片（经手机中继到域名）根本到不了后端。修复方式：把 Mac mini `.env` 的 `DEVICE_ACCESS_TOKEN` 改成与 `.tools/esp32/device-token` 相同的值（或反过来重新给板子烧同一份 token，见[ESP32接板联调](./ESP32_BRINGUP.md)），重启服务后重跑检查。
+
+## 2026-10-17 18:2x 复检：域名侧全部通过
+
+Mac mini 同步到 `f904dab` 并重建前端、服务端 `DEVICE_ACCESS_TOKEN` 与板子对齐之后复检：
+
+```
+health            pass  200
+deployment-bundle pass  线上 index-wZ3wwjE_.js = 已推送 f904dab 的构建（--expect-bundle 断言）
+app-session       pass  连接口令被接受，返回 de_session
+app-state         pass  analysisConfigured=true / analysisMode=model / chatMode=model
+                        cameraConnected=true / paused=true / meals=0 / captures=0
+device-auth       pass  带板子 token 的空上传得到 400（鉴权通过）
+photo-review      pass  合成 no-food.png 上传 201 → Step 复核 2.37s 得 no_food → 撤回 200
+photo-cleanup     pass  线上未留下测试照片（productionDataModified=false）
+overall           pass
+```
+
+含义：域名的 App 鉴权、状态轮询、设备鉴权和真实 Step 识别链路都已打通；`cameraConnected=true` 说明板子经手机中继上报的心跳已经到达域名后端。剩下的验收只能由真机完成：手机 App 指向 `https://habi.zhexin.site` 后拍一张真实照片，人为确认上传、识别结论和时间线；合成图不代表真实餐食识别准确率。
 
 ## App 页面来自 APK，不来自线上部署
 
