@@ -63,7 +63,7 @@ npm start
 
 ### 手机端
 
-需要 JDK 17、Android SDK、Gradle，以及一台开启 USB 调试的 Android 手机。模型权重约 740 MB，不在仓库里，由脚本下载并核对哈希：
+需要 JDK 17、Android SDK、Gradle，以及一台开启 USB 调试的 Android 手机。模型权重约 770 MB，不在仓库里，由脚本下载并核对哈希：
 
 ```sh
 python3 tools/decision/prepare-android-local.py --install-toolchain --skip-probe-build
@@ -111,7 +111,7 @@ node --env-file-if-exists=.env tools/backend/check-remote.mjs \
 | 唤醒口令 | 「哈比」唤醒，六秒内说「记录」；大小写、空格、标点不影响；否定/引用/未来语义不触发 | 真机三段真实语音各拍一张（旧口令）；更多口音与噪声未评 |
 | 短句复核 | 实时 KWS 后用 VAD 句尾与 SenseVoice 确认整句，跳过不相关的用餐 Decider | 单条 AudioRecord 同一路音频 |
 | 后置相机 | 预览帧等待曝光，保存一张 JPEG 后立即关闭相机；失败最多三次有界补传，不重拍 | 单张 1920×1080；后台需可见页面启动前台服务 |
-| 本地模型 | Silero VAD → SenseVoice INT8 → Decider Q4，全部在手机 CPU 上跑；原始音频留在手机 | 常驻约 740 MB；Mac 不参与这三步 |
+| 本地模型 | Silero VAD → SenseVoice INT8 → Decider Q4，全部在手机 CPU 上跑；原始音频留在手机 | 常驻约 770 MB；Mac 不参与这三步 |
 | 连续录音实测 | 357.28 秒、35 个完整片自动处理，0 处理失败、0 队列溢出 | 短测，不等于 12 小时/锁屏续航 |
 | 重连补验 | 累计 1478.34 秒、148 个 WAV；142 片已处理，出现 1 次队列溢出，共 6 片未分析，原音频保留 | 这是失败证据，不表述为全部成功 |
 
